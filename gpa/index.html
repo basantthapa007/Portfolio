@@ -1,1 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>NEB Class 12 GPA Calculator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+header h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+header p {
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: #1e3a8a;
+}
+
+.notice {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    color: #1e40af;
+}
+
+/* SUBJECT */
+
+.subject {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+}
+
+.subject-header h3 {
+    color: #111827;
+}
+
+.required {
+    font-size: 12px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 5px 9px;
+    border-radius: 20px;
+}
+
+.optional {
+    font-size: 12px;
+    background: #dcfce7;
+    color: #15803d;
+    padding: 5px 9px;
+    border-radius: 20px;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.input-box label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #475569;
+}
+
+.input-box input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-box input:focus,
+select:focus {
+    border-color: #2563eb;
+}
+
+.total {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.grade-result {
+    font-weight: bold;
+}
+
+/* BUTTON */
+
+.calculate {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.calculate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+}
+
+/* RESULT */
+
+.result {
+    display: none;
+}
+
+.gpa-box {
+    text-align: center;
+    background: linear-gradient(135deg, #eef2ff, #eff6ff);
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.gpa-box h3 {
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.gpa {
+    font-size: 55px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 13px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f8fafc;
+    color: #334155;
+}
+
+footer {
+    text-align: center;
+    color: #64748b;
+    padding: 30px 20px;
+    font-size: 14px;
+}
+
+.error {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+@media (max-width: 650px) {
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    .inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .subject-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 9px 5px;
+    }
+
+    .gpa {
+        font-size: 45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>NEB Class 12 GPA Calculator</h1>
+    <p>Science Stream • Theory + Practical</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="notice">
+            Enter your theory and practical marks for each subject.
+            Select two optional subjects.
+        </div>
+
+        <h2>Subject Marks</h2>
+
+        <!-- NEPALI -->
+
+        <div class="subject">
+            <div class="subject-header">
+                <h3>Nepali</h3>
+                <span class="required">Compulsory</span>
+            </div>
+
+            <div class="inputs">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="nepaliTheory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="nepaliPractical"
+                           min="0"
+                           max="25"
+                           placeholder="0 - 25">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ENGLISH -->
+
+        <div class="subject">
+            <div class="subject-header">
+                <h3>English</h3>
+                <span class="required">Compulsory</span>
+            </div>
+
+            <div class="inputs">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="englishTheory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="englishPractical"
+                           min="0"
+                           max="25"
+                           placeholder="0 - 25">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- PHYSICS -->
+
+        <div class="subject">
+            <div class="subject-header">
+                <h3>Physics</h3>
+                <span class="required">Compulsory</span>
+            </div>
+
+            <div class="inputs">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="physicsTheory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="physicsPractical"
+                           min="0"
+                           max="25"
+                           placeholder="0 - 25">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- CHEMISTRY -->
+
+        <div class="subject">
+            <div class="subject-header">
+                <h3>Chemistry</h3>
+                <span class="required">Compulsory</span>
+            </div>
+
+            <div class="inputs">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="chemistryTheory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="chemistryPractical"
+                           min="0"
+                           max="25"
+                           placeholder="0 - 25">
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- OPTIONAL 1 -->
+
+        <div class="subject">
+
+            <div class="subject-header">
+                <h3>Optional Subject 1</h3>
+                <span class="optional">Choose One</span>
+            </div>
+
+            <select id="optional1">
+                <option value="">-- Select Subject --</option>
+                <option value="math">Mathematics</option>
+                <option value="computer">Computer Science</option>
+                <option value="biology">Biology</option>
+                <option value="social">Social Studies</option>
+            </select>
+
+            <div class="inputs" style="margin-top:15px;">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="optional1Theory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="optional1Practical"
+                           min="0"
+                           max="50"
+                           placeholder="0 - 50">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- OPTIONAL 2 -->
+
+        <div class="subject">
+
+            <div class="subject-header">
+                <h3>Optional Subject 2</h3>
+                <span class="optional">Choose One</span>
+            </div>
+
+            <select id="optional2">
+                <option value="">-- Select Subject --</option>
+                <option value="math">Mathematics</option>
+                <option value="computer">Computer Science</option>
+                <option value="biology">Biology</option>
+                <option value="social">Social Studies</option>
+            </select>
+
+            <div class="inputs" style="margin-top:15px;">
+
+                <div class="input-box">
+                    <label>Theory Marks</label>
+                    <input type="number"
+                           id="optional2Theory"
+                           min="0"
+                           max="100"
+                           placeholder="0 - 100">
+                </div>
+
+                <div class="input-box">
+                    <label>Practical Marks</label>
+                    <input type="number"
+                           id="optional2Practical"
+                           min="0"
+                           max="50"
+                           placeholder="0 - 50">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button class="calculate" onclick="calculateGPA()">
+            Calculate GPA
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div class="card result" id="result">
+
+        <div class="gpa-box">
+
+            <h3>Your Overall GPA</h3>
+
+            <div class="gpa" id="overallGPA">
+                0.00
+            </div>
+
+        </div>
+
+        <h2>Result Details</h2>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Total</th>
+                    <th>Grade</th>
+                    <th>GPA</th>
+                </tr>
+            </thead>
+
+            <tbody id="resultTable">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 NEB GPA Calculator • Built for students
+</footer>
+
+
+<script>
+
+/*
+    Grade conversion
+
+    A+ = 90-100
+    A  = 80-89
+    B+ = 70-79
+    B  = 60-69
+    C+ = 50-59
+    C  = 40-49
+    D  = 35-39
+    NG = below 35
+*/
+
+function getGrade(mark) {
+
+    if (mark >= 90)
+        return { grade: "A+", gpa: 4.0 };
+
+    if (mark >= 80)
+        return { grade: "A", gpa: 3.6 };
+
+    if (mark >= 70)
+        return { grade: "B+", gpa: 3.2 };
+
+    if (mark >= 60)
+        return { grade: "B", gpa: 2.8 };
+
+    if (mark >= 50)
+        return { grade: "C+", gpa: 2.4 };
+
+    if (mark >= 40)
+        return { grade: "C", gpa: 2.0 };
+
+    if (mark >= 35)
+        return { grade: "D", gpa: 1.6 };
+
+    return { grade: "NG", gpa: 0 };
+}
+
+
+function getValue(id) {
+
+    let value = parseFloat(document.getElementById(id).value);
+
+    if (isNaN(value)) {
+        return 0;
+    }
+
+    return value;
+}
+
+
+function calculateSubject(theory, practical) {
+
+    let total = theory + practical;
+
+    return {
+        total: total,
+        result: getGrade(total)
+    };
+}
+
+
+function calculateGPA() {
+
+    const subjects = [];
+
+    /* Nepali */
+
+    subjects.push({
+        name: "Nepali",
+        theory: getValue("nepaliTheory"),
+        practical: getValue("nepaliPractical")
+    });
+
+
+    /* English */
+
+    subjects.push({
+        name: "English",
+        theory: getValue("englishTheory"),
+        practical: getValue("englishPractical")
+    });
+
+
+    /* Physics */
+
+    subjects.push({
+        name: "Physics",
+        theory: getValue("physicsTheory"),
+        practical: getValue("physicsPractical")
+    });
+
+
+    /* Chemistry */
+
+    subjects.push({
+        name: "Chemistry",
+        theory: getValue("chemistryTheory"),
+        practical: getValue("chemistryPractical")
+    });
+
+
+    /* Optional 1 */
+
+    let optional1Name =
+        document.getElementById("optional1").value;
+
+    if (optional1Name === "") {
+
+        alert("Please select Optional Subject 1.");
+        return;
+
+    }
+
+    subjects.push({
+        name: formatSubject(optional1Name),
+        theory: getValue("optional1Theory"),
+        practical: getValue("optional1Practical")
+    });
+
+
+    /* Optional 2 */
+
+    let optional2Name =
+        document.getElementById("optional2").value;
+
+    if (optional2Name === "") {
+
+        alert("Please select Optional Subject 2.");
+        return;
+
+    }
+
+
+    if (optional1Name === optional2Name) {
+
+        alert("Please choose two different optional subjects.");
+        return;
+
+    }
+
+
+    subjects.push({
+        name: formatSubject(optional2Name),
+        theory: getValue("optional2Theory"),
+        practical: getValue("optional2Practical")
+    });
+
+
+    /* Calculate */
+
+    let totalGPA = 0;
+
+    let table = "";
+
+
+    subjects.forEach(subject => {
+
+        let result = calculateSubject(
+            subject.theory,
+            subject.practical
+        );
+
+        totalGPA += result.result.gpa;
+
+        table += `
+            <tr>
+
+                <td>
+                    ${subject.name}
+                </td>
+
+                <td>
+                    ${result.total}
+                </td>
+
+                <td>
+                    ${result.result.grade}
+                </td>
+
+                <td>
+                    ${result.result.gpa.toFixed(1)}
+                </td>
+
+            </tr>
+        `;
+
+    });
+
+
+    let overall =
+        totalGPA / subjects.length;
+
+
+    document.getElementById("overallGPA")
+        .innerText = overall.toFixed(2);
+
+
+    document.getElementById("resultTable")
+        .innerHTML = table;
+
+
+    document.getElementById("result")
+        .style.display = "block";
+
+
+    document.getElementById("result")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+function formatSubject(subject) {
+
+    const names = {
+
+        math: "Mathematics",
+
+        computer: "Computer Science",
+
+        biology: "Biology",
+
+        social: "Social Studies"
+
+    };
+
+    return names[subject] || subject;
+
+}
+
+</script>
+
+</body>
+</html>
