@@ -54,6 +54,22 @@
 </head>
 <body>
 
+  <script>
+    // --- ACCESS CODE CONFIGURATION ---
+    const SECRET_CODE = "123456"; // Change this to your desired 6-digit code
+    const REDIRECT_URL = "https://basantthapa.com.np";
+
+    // Prompt user for 6-digit passcode on page load
+    const userPass = prompt("Enter 6-digit passcode to view presentation:");
+
+    if (userPass === SECRET_CODE) {
+      alert("Welcome! Access granted.");
+    } else {
+      alert("Incorrect passcode! Redirecting...");
+      window.location.href = REDIRECT_URL;
+    }
+  </script>
+
   <div class="container">
     <header>
       <h1>Presentation Viewer</h1>
@@ -71,10 +87,10 @@
   </div>
 
   <script>
-    // 1. Enter the raw URL of your .pptx file on GitHub
+    // Raw URL of your PowerPoint file on GitHub
     const RAW_PPTX_URL = "https://raw.githubusercontent.com/basantthapa007/Portfolio/main/pp/Every%20morning%20I%20wake.pptx";
 
-    // 2. Pass it through the Microsoft Office Online viewer API
+    // Pass through Microsoft Office Online viewer API
     const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(RAW_PPTX_URL)}`;
 
     // Set iframe source
