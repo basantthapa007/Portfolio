@@ -14,9 +14,88 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #1e1e1e;
+      background-color: #121212;
       font-family: Arial, sans-serif;
     }
+
+    /* Lock Screen Overlay */
+    #lock-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .passcode-card {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      width: 320px;
+      color: #ffffff;
+    }
+
+    .passcode-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .passcode-card p {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    /* Password Input (Hides characters as dots) */
+    .passcode-card input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.2rem;
+      letter-spacing: 4px;
+      text-align: center;
+      border: 1px solid #444;
+      border-radius: 6px;
+      background-color: #2b2b2b;
+      color: #fff;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .passcode-card input[type="password"]:focus {
+      border-color: #0078d4;
+    }
+
+    .passcode-card button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .passcode-card button:hover {
+      background-color: #005a9e;
+    }
+
+    #error-msg {
+      color: #ff5555;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: none;
+    }
+
+    /* Presentation Layout */
     .container {
       display: flex;
       flex-direction: column;
@@ -54,29 +133,35 @@
 </head>
 <body>
 
-  <script>
-    // --- ACCESS CODE CONFIGURATION ---
-    const SECRET_CODE = "123456"; // Change this to your desired 6-digit code
-    const REDIRECT_URL = "https://basantthapa.com.np";
+  <!-- Lock Screen Overlay -->
+  <div id="lock-screen">
+    <div class="passcode-card">
+      <h2>Protected Presentation</h2>
+      <p>Enter 6-digit passcode to proceed</p>
+      
+      <form id="passcode-form" onsubmit="verifyPasscode(event)">
+        <input 
+          type="password" 
+          id="passcode-input" 
+          maxlength="6" 
+          placeholder="••••••" 
+          autofocus 
+          required 
+        />
+        <button type="submit">Submit</button>
+      </form>
 
-    // Prompt user for 6-digit passcode on page load
-    const userPass = prompt("Enter 6-digit passcode to view presentation:");
+      <div id="error-msg">Incorrect passcode! Redirecting...</div>
+    </div>
+  </div>
 
-    if (userPass === SECRET_CODE) {
-      alert("Welcome! Access granted.");
-    } else {
-      alert("Incorrect passcode! Redirecting...");
-      window.location.href = REDIRECT_URL;
-    }
-  </script>
-
+  <!-- Presentation Container -->
   <div class="container">
     <header>
       <h1>Presentation Viewer</h1>
       <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen Mode</button>
     </header>
     
-    <!-- Microsoft Office Web Viewer Embed -->
     <iframe 
       id="presentation-frame"
       src=""
@@ -87,16 +172,30 @@
   </div>
 
   <script>
-    // Raw URL of your PowerPoint file on GitHub
+    const SECRET_CODE = "123456"; // Change your passcode here
+    const REDIRECT_URL = "https://basantthapa.com.np";
     const RAW_PPTX_URL = "https://raw.githubusercontent.com/basantthapa007/Portfolio/main/pp/Every%20morning%20I%20wake.pptx";
 
-    // Pass through Microsoft Office Online viewer API
-    const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(RAW_PPTX_URL)}`;
+    function verifyPasscode(event) {
+      event.preventDefault();
+      const input = document.getElementById("passcode-input").value;
+      const errorMsg = document.getElementById("error-msg");
 
-    // Set iframe source
-    document.getElementById("presentation-frame").src = viewerUrl;
+      if (input === SECRET_CODE) {
+        // Correct passcode: Remove lock screen and load presentation
+        document.getElementById("lock-screen").style.display = "none";
+        
+        const viewerUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(RAW_PPTX_URL)}`;
+        document.getElementById("presentation-frame").src = viewerUrl;
+      } else {
+        // Incorrect passcode: Show error and redirect
+        errorMsg.style.display = "block";
+        setTimeout(() => {
+          window.location.href = REDIRECT_URL;
+        }, 1200);
+      }
+    }
 
-    // Fullscreen toggle handler
     function toggleFullscreen() {
       const iframe = document.getElementById("presentation-frame");
       if (iframe.requestFullscreen) {
