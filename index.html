@@ -1,732 +1,751 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
+    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2195037554780501"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
-    <!-- SEO Meta Tags -->
-    <title>Basant Thapa | Web Developer & Student Portfolio</title>
-    <meta name="description" content="Welcome to the official portfolio of Basant Thapa. Discover web development projects, skills, and contact information.">
+    <!-- Primary Title & SEO Tags -->
+    <title>Basant Thapa — Web Developer & Student | Official Portfolio (Nepal)</title>
+    <meta name="description" content="Official website of Basant Thapa, a passionate Web Developer and Student based in Nepal. Discover web development projects, GPA calculator, retro games, and contact info.">
     <meta name="author" content="Basant Thapa">
-    <meta name="keywords" content="Basant Thapa, Basant Thapa Portfolio, Basant Thapa Nepal, Web Developer Nepal">
+    <meta name="keywords" content="Basant Thapa, Basant Thapa Portfolio, Basant Thapa Nepal, Basant Thapa Web Developer, Basant Thapa Student, Web Developer Nepal, Basant Thapa GPA Calculator">
     <link rel="canonical" href="https://basantthapa.com.np/">
 
-    <!-- Open Graph Tags (Social Media Sharing) -->
+    <!-- Open Graph Meta Tags (Social Media & Google Cards) -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Basant Thapa Portfolio">
     <meta property="og:url" content="https://basantthapa.com.np/">
-    <meta property="og:title" content="Basant Thapa | Web Developer & Student Portfolio">
-    <meta property="og:description" content="Welcome to the official portfolio of Basant Thapa. Discover web development projects, skills, and contact information.">
+    <meta property="og:title" content="Basant Thapa — Web Developer & Student | Official Portfolio">
+    <meta property="og:description" content="Explore projects, applications, and web development skills of Basant Thapa from Nepal.">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=Basant+Thapa+Portfolio">
 
-    <!-- Schema.org Person Structured Data -->
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Basant Thapa — Web Developer & Student (Nepal)">
+    <meta name="twitter:description" content="Official portfolio and projects by Basant Thapa.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=Basant+Thapa+Portfolio">
+
+    <!-- Schema.org Person & Website Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Basant Thapa",
-      "url": "https://basantthapa.com.np/",
-      "jobTitle": "Developer",
-      "sameAs": [
-        "https://github.com/your-username",
-        "https://linkedin.com/in/your-username"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://basantthapa.com.np/#person",
+          "name": "Basant Thapa",
+          "alternateName": ["Basant Thapa Nepal", "Basant Thapa Web Developer"],
+          "url": "https://basantthapa.com.np/",
+          "jobTitle": "Web Developer & Student",
+          "nationality": "Nepali",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Nepal"
+          },
+          "knowsAbout": [
+            "Web Development",
+            "JavaScript",
+            "HTML5",
+            "CSS3",
+            "UI/UX Design",
+            "Software Engineering"
+          ],
+          "sameAs": [
+            "https://github.com/your-username",
+            "https://linkedin.com/in/your-username",
+            "https://instagram.com/your-username"
+          ],
+          "mainEntityOfPage": "https://basantthapa.com.np/"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://basantthapa.com.np/#website",
+          "url": "https://basantthapa.com.np/",
+          "name": "Basant Thapa Official Website",
+          "description": "Official Portfolio of Basant Thapa - Web Developer and Student in Nepal.",
+          "publisher": {
+            "@id": "https://basantthapa.com.np/#person"
+          },
+          "inLanguage": "en-US"
+        }
       ]
     }
     </script>
 
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#eef2ff',
+                100: '#e0e7ff',
+                500: '#6366f1',
+                600: '#4f46e5',
+                700: '#4338ca',
+              },
+              accent: '#06b6d4',
+            },
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        html {
             scroll-behavior: smooth;
         }
 
-        :root {
-            --bg: #080b12;
-            --card: #101520;
-            --text: #f5f7fa;
-            --muted: #9ca6b5;
-            --accent: #6c63ff;
-            --accent2: #00d4ff;
-            --border: rgba(255,255,255,0.08);
-        }
-
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            background: rgba(8,11,18,0.75);
-            border-bottom: 1px solid var(--border);
+        /* Ambient Glow Animations */
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.1); }
         }
 
-        .nav-container {
-            max-width: 1100px;
-            margin: auto;
-            height: 70px;
-            padding: 0 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 100px 20px 50px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
+        .glow-blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: var(--accent);
-            filter: blur(180px);
-            opacity: 0.15;
             border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.4;
+            animation: floatGlow 12s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .hero-content {
-            position: relative;
-            max-width: 800px;
-            animation: fadeUp 1s ease;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
 
-        .hero h1 {
-            font-size: clamp(45px, 8vw, 85px);
-            line-height: 1.05;
-            margin-bottom: 20px;
+        /* Typing Effect Caret */
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 0.8s infinite;
+            color: #4f46e5;
+            font-weight: 700;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            -webkit-background-clip: text;
-            color: transparent;
+        /* Glassmorphic Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        .hero p {
-            color: var(--muted);
-            font-size: 19px;
-            max-width: 650px;
-            margin: auto;
+        /* Reveal Section Fade Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .buttons {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+        /* Card Hover Depth */
+        .hover-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .btn {
-            padding: 13px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(108,99,255,0.3);
-        }
-
-        .btn-secondary {
-            border: 1px solid var(--border);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: black;
-        }
-
-        /* GENERAL */
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 100px 25px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .section-title p {
-            color: var(--muted);
-        }
-
-        /* ABOUT */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-
-        .about-text p {
-            color: var(--muted);
-            margin-bottom: 15px;
-        }
-
-        .info-box {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 15px;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 13px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-item span:first-child {
-            color: var(--muted);
-        }
-
-        /* SKILLS */
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .skill {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 25px;
-            border-radius: 14px;
-            transition: 0.3s;
-        }
-
-        .skill:hover {
+        .hover-card:hover {
             transform: translateY(-6px);
-            border-color: var(--accent);
-        }
-
-        .skill-icon {
-            font-size: 32px;
-            margin-bottom: 15px;
-        }
-
-        .skill h3 {
-            margin-bottom: 8px;
-        }
-
-        .skill p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        /* PROJECTS */
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .project {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .project:hover {
-            transform: translateY(-7px);
-        }
-
-        .project-image {
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 55px;
-            background: linear-gradient(135deg, #151a2a, #0d111a);
-        }
-
-        .project-content {
-            padding: 22px;
-        }
-
-        .project-content h3 {
-            margin-bottom: 8px;
-        }
-
-        .project-content p {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 15px;
-        }
-
-        .project-link {
-            color: var(--accent2);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* CONTACT */
-        .contact-box {
-            max-width: 700px;
-            margin: auto;
-            text-align: center;
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 50px 30px;
-            border-radius: 18px;
-        }
-
-        .contact-box p {
-            color: var(--muted);
-            margin: 15px auto 30px;
-        }
-
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .socials a {
-            text-decoration: none;
-            color: white;
-            border: 1px solid var(--border);
-            padding: 10px 18px;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .socials a:hover {
-            background: white;
-            color: black;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--muted);
-            border-top: 1px solid var(--border);
-            font-size: 14px;
-        }
-
-        /* ANIMATION */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* MOBILE RESPONSIVENESS */
-        @media (max-width: 800px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .about {
-                grid-template-columns: 1fr;
-            }
-
-            .skills {
-                grid-template-columns: 1fr;
-            }
-
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 75px 20px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
+            box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+            border-color: #c7d2fe;
         }
     </style>
 </head>
 
-<body>
+<body class="relative text-slate-800 bg-slate-50 selection:bg-brand-500 selection:text-white">
 
-<!-- NAVIGATION -->
-<nav>
-    <div class="nav-container">
-        <div class="logo">My<span>Portfolio</span></div>
+    <!-- Top Scroll Progress Indicator -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-brand-600 to-accent z-50 transition-all duration-150" style="width: 0%;"></div>
 
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+    <!-- Ambient Floating Light Blobs -->
+    <div class="glow-blob w-96 h-96 bg-brand-100 top-10 left-[-100px]"></div>
+    <div class="glow-blob w-96 h-96 bg-cyan-100 top-[400px] right-[-100px] animation-delay-2000"></div>
 
-
-<!-- HERO -->
-<header class="hero" id="home">
-    <div class="hero-content">
-
-        <p>Hello, I'm</p>
-
-        <h1>
-            Basant <span>Thapa</span>
-        </h1>
-
-        <p>
-            A student, developer and creator passionate about
-            technology, web development and building interesting projects.
-        </p>
-
-        <div class="buttons">
-            <a href="#projects" class="btn btn-primary">
-                View My Work
+    <!-- HEADER / NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-40 glass-nav">
+        <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between py-4">
+            <!-- Brand Logo -->
+            <a href="https://basantthapa.com.np/" class="text-xl font-black tracking-tight text-slate-900 group flex items-center gap-2">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-accent text-white flex items-center justify-center text-sm font-extrabold shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                    BT
+                </span>
+                <span>Basant<span class="text-brand-600">Thapa</span></span>
             </a>
 
-            <a href="#contact" class="btn btn-secondary">
-                Contact Me
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <a href="#home" class="hover:text-brand-600 transition-colors">Home</a>
+                <a href="#about" class="hover:text-brand-600 transition-colors">About</a>
+                <a href="#skills" class="hover:text-brand-600 transition-colors">Skills</a>
+                <a href="#projects" class="hover:text-brand-600 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
+            </nav>
+
+            <!-- CTA Header Button -->
+            <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-brand-600 rounded-lg shadow-sm hover:shadow-md transition-all">
+                Let's Talk
             </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="menu-btn" class="md:hidden text-slate-700 hover:text-brand-600 focus:outline-none" aria-label="Toggle Navigation">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
 
-    </div>
-</header>
-
-
-<!-- ABOUT -->
-<section id="about">
-
-    <div class="section-title">
-        <h2>About Me</h2>
-        <p>A little bit about who I am</p>
-    </div>
-
-    <div class="about">
-
-        <div class="about-text">
-
-            <h3>Hi, I'm Basant Thapa 👋</h3>
-
-            <p>
-                I'm a student and aspiring developer who enjoys
-                creating websites, experimenting with technology
-                and learning new things.
-            </p>
-
-            <p>
-                I enjoy turning ideas into real projects and
-                continuously improving my programming and
-                problem-solving skills.
-            </p>
-
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 font-medium text-sm text-slate-600">
+            <a href="#home" class="block hover:text-brand-600 transition-colors">Home</a>
+            <a href="#about" class="block hover:text-brand-600 transition-colors">About</a>
+            <a href="#skills" class="block hover:text-brand-600 transition-colors">Skills</a>
+            <a href="#projects" class="block hover:text-brand-600 transition-colors">Projects</a>
+            <a href="#contact" class="block hover:text-brand-600 transition-colors">Contact</a>
         </div>
+    </header>
 
-        <div class="info-box">
+    <main class="relative z-10 pt-20">
 
-            <div class="info-item">
-                <span>Name</span>
-                <strong>Basant Thapa</strong>
-            </div>
+        <!-- HERO SECTION -->
+        <section id="home" class="min-h-[88vh] flex items-center justify-center px-6 py-16 relative">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold shadow-xs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Available for Projects &amp; Collaborations
+                </div>
 
-            <div class="info-item">
-                <span>Location</span>
-                <strong>Nepal</strong>
-            </div>
+                <!-- Main Heading -->
+                <div class="space-y-4">
+                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                        Hi, I'm <span class="bg-gradient-to-r from-brand-600 via-indigo-600 to-accent bg-clip-text text-transparent">Basant Thapa</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-semibold text-slate-600 h-10 flex items-center justify-center gap-2">
+                        I am a <span id="typing-text" class="text-brand-600 cursor-blink"></span>
+                    </p>
+                </div>
 
-            <div class="info-item">
-                <span>Role</span>
-                <strong>Student / Developer</strong>
-            </div>
-
-            <div class="info-item">
-                <span>Email</span>
-                <strong>your@email.com</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- SKILLS -->
-<section id="skills">
-
-    <div class="section-title">
-        <h2>My Skills</h2>
-        <p>Technologies and things I enjoy working with</p>
-    </div>
-
-    <div class="skills">
-
-        <div class="skill">
-            <div class="skill-icon">💻</div>
-            <h3>HTML & CSS</h3>
-            <p>
-                Creating responsive and modern websites
-                using HTML and CSS.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">⚡</div>
-            <h3>JavaScript</h3>
-            <p>
-                Building interactive websites and
-                browser-based applications.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🐍</div>
-            <h3>Programming</h3>
-            <p>
-                Learning programming concepts,
-                algorithms and problem solving.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🎨</div>
-            <h3>UI Design</h3>
-            <p>
-                Designing clean, simple and user-friendly
-                interfaces.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🚀</div>
-            <h3>Web Projects</h3>
-            <p>
-                Turning ideas into functional web projects
-                and experiments.
-            </p>
-        </div>
-
-        <div class="skill">
-            <div class="skill-icon">🧠</div>
-            <h3>Learning</h3>
-            <p>
-                Constantly learning new technologies
-                and improving my skills.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PROJECTS -->
-<section id="projects">
-
-    <div class="section-title">
-        <h2>My Projects</h2>
-        <p>Some things I've built</p>
-    </div>
-
-    <div class="projects">
-
-        <div class="project">
-
-            <div class="project-image">
-                🐍
-            </div>
-
-            <div class="project-content">
-
-                <h3>Retro Snake Game</h3>
-
-                <p>
-                    A classic Nokia-style Snake game
-                    built using HTML, CSS and JavaScript.
+                <!-- Description -->
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+                    Passionate student and developer based in Nepal. Crafting user-friendly web applications, clean responsive interfaces, and simple modern solutions.
                 </p>
 
-                <a href="#" class="project-link">
-                    View Project →
-                </a>
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap justify-center items-center gap-4 pt-2">
+                    <a href="#projects" class="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all">
+                        Explore Work
+                    </a>
+                    <a href="#contact" class="px-7 py-3.5 rounded-xl font-bold text-sm text-slate-700 bg-white border border-slate-200 hover:bg-slate-100 hover:border-slate-300 shadow-sm hover:-translate-y-0.5 transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Fast Highlights Bar -->
+                <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
+                        <div class="text-2xl font-black text-brand-600">100%</div>
+                        <div class="text-xs font-medium text-slate-500">Dedication</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
+                        <div class="text-2xl font-black text-brand-600">Nepal</div>
+                        <div class="text-xs font-medium text-slate-500">Based Location</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
+                        <div class="text-2xl font-black text-brand-600">Web</div>
+                        <div class="text-xs font-medium text-slate-500">Development</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
+                        <div class="text-2xl font-black text-brand-600">2026</div>
+                        <div class="text-xs font-medium text-slate-500">Active Portfolio</div>
+                    </div>
+                </div>
 
             </div>
+        </section>
 
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20 px-6 max-w-6xl mx-auto reveal">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Personal Background</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">About Basant Thapa</h3>
+                <p class="text-slate-500 mt-3 text-sm sm:text-base">Driven by curiosity, continuous learning, and passion for technology.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+                <!-- Profile & Bio Left Column -->
+                <div class="md:col-span-7 space-y-6">
+                    <div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-4">
+                        <h4 class="text-2xl font-bold text-slate-900">Developer &amp; Lifelong Learner 👋</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Hello! I am <strong class="text-slate-900">Basant Thapa</strong>, an enthusiastic web developer and student based in Nepal. I love transforming ideas into real, accessible, and functional browser applications.
+                        </p>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            My journey in web development centers around mastering front-end techniques, crafting responsive layouts, understanding basic software architecture, and continuously learning modern tools.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Student</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Problem Solver</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Frontend Enthusiast</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Nepal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Structured Info Right Column -->
+                <div class="md:col-span-5">
+                    <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-md space-y-4">
+                        <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Quick Overview</h4>
+                        <ul class="space-y-3.5 text-sm">
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-500 font-medium">Name:</span>
+                                <span class="font-bold text-slate-800">Basant Thapa</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-500 font-medium">Role:</span>
+                                <span class="font-bold text-slate-800">Web Developer &amp; Student</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-500 font-medium">Country:</span>
+                                <span class="font-bold text-slate-800">Nepal 🇳🇵</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-500 font-medium">Domain:</span>
+                                <span class="font-bold text-brand-600">basantthapa.com.np</span>
+                            </li>
+                            <li class="flex justify-between items-center">
+                                <span class="text-slate-500 font-medium">Status:</span>
+                                <span class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800">Open for Work</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="py-20 px-6 max-w-6xl mx-auto reveal">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Capabilities</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Technical Skills</h3>
+                <p class="text-slate-500 mt-3 text-sm sm:text-base">Technologies and methodologies I work with.</p>
+
+                <!-- Filter Tabs -->
+                <div class="flex justify-center gap-2 mt-8">
+                    <button onclick="filterSkills('all')" class="skill-tab active px-4 py-2 rounded-lg text-xs font-bold transition-all bg-brand-600 text-white shadow-xs">All</button>
+                    <button onclick="filterSkills('frontend')" class="skill-tab px-4 py-2 rounded-lg text-xs font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-100">Frontend</button>
+                    <button onclick="filterSkills('concepts')" class="skill-tab px-4 py-2 rounded-lg text-xs font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-100">Concepts &amp; Tools</button>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skills-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- HTML & CSS -->
+                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl font-black mb-4">
+                        🌐
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">HTML5 &amp; CSS3</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Responsive modern layouts, Flexbox, Grid, semantic HTML structure, and clean styling.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-orange-500 h-full rounded-full" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-2xl font-black mb-4">
+                        ⚡
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">JavaScript (ES6+)</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">DOM manipulation, dynamic features, async logic, event handling, and interactive elements.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-yellow-500 h-full rounded-full" style="width: 82%;"></div>
+                    </div>
+                </div>
+
+                <!-- Tailwind CSS & UI Design -->
+                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-2xl font-black mb-4">
+                        🎨
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">UI &amp; Tailored Design</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Building aesthetic light/dark layouts, utility-first design, icons, and micro-interactions.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-cyan-500 h-full rounded-full" style="width: 85%;"></div>
+                    </div>
+                </div>
+
+                <!-- Programming Logic -->
+                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-brand-600 flex items-center justify-center text-2xl font-black mb-4">
+                        🧠
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Algorithms &amp; Problem Solving</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Logical problem solving, array manipulations, data handling, and code optimization.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-brand-600 h-full rounded-full" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <!-- Web Optimization & SEO -->
+                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-black mb-4">
+                        🚀
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">SEO &amp; Web Performance</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Structured JSON-LD schema, search engine optimization, fast load times, and meta tags.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-emerald-500 h-full rounded-full" style="width: 88%;"></div>
+                    </div>
+                </div>
+
+                <!-- Git & Deployment -->
+                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl font-black mb-4">
+                        🛠️
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-1">Tools &amp; Deployment</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Git version control, hosting platforms, domain setup, and browser debugging.</p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-slate-700 h-full rounded-full" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20 px-6 max-w-6xl mx-auto reveal">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Portfolio Showcase</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Featured Projects</h3>
+                <p class="text-slate-500 mt-3 text-sm sm:text-base">Applications and projects created by Basant Thapa.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Project 1: GPA Calculator -->
+                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-indigo-50 to-brand-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
+                            <span class="group-hover:scale-110 transition-transform duration-300">🧮</span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-brand-700 shadow-xs">Utility App</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold text-slate-900">GPA Calculator</h4>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                A simple and accurate web calculator built for students in Nepal to calculate overall GPA, grades, and percentage metrics instantly.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">HTML/CSS</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">JavaScript</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Education</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://basantthapa.com.np/gpa/" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
+                            Open Project &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Retro Snake Game -->
+                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
+                            <span class="group-hover:scale-110 transition-transform duration-300">🐍</span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-emerald-700 shadow-xs">Browser Game</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold text-slate-900">Retro Snake Game</h4>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Classic Nokia-style Snake game built with JavaScript canvas logic, score counter, smooth arrow key controls, and retro visuals.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">JS Canvas</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Game Logic</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://basantthapa.com.np/snake/" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
+                            Play Game &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Official Portfolio -->
+                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="h-44 bg-gradient-to-br from-sky-50 to-cyan-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
+                            <span class="group-hover:scale-110 transition-transform duration-300">🌐</span>
+                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-cyan-700 shadow-xs">Personal Web</span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h4 class="text-xl font-bold text-slate-900">Personal Website</h4>
+                            <p class="text-slate-600 text-xs leading-relaxed">
+                                Highly optimized light-theme personal web portal featuring JSON-LD structured data, responsive UI, dynamic animations, and fast loading speed.
+                            </p>
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">SEO Optimized</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Tailwind CSS</span>
+                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Schema.org</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://basantthapa.com.np/" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
+                            View Site &rarr;
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 px-6 max-w-4xl mx-auto reveal">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Get In Touch</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Let's Connect</h3>
+                <p class="text-slate-500 mt-3 text-sm sm:text-base">Have a question or want to collaborate on a project? Feel free to reach out.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 bg-white border border-slate-200/80 rounded-2xl shadow-md p-8">
+                
+                <!-- Contact Direct Info -->
+                <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-slate-100 pb-6 md:pb-0 md:pr-6">
+                    <h4 class="text-xl font-bold text-slate-900">Basant Thapa</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        I am always open to discussing new web development ideas, learning opportunities, or technology collaborations.
+                    </p>
+
+                    <div class="space-y-4 pt-2 text-xs">
+                        <div class="flex items-center gap-3 text-slate-700 font-medium">
+                            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold">📍</span>
+                            <span>Nepal 🇳🇵</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-700 font-medium">
+                            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold">✉️</span>
+                            <span>contact@basantthapa.com.np</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="pt-4">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Social Profiles</div>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://github.com/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
+                                GitHub
+                            </a>
+                            <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
+                                LinkedIn
+                            </a>
+                            <a href="https://instagram.com/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Contact Form Mockup -->
+                <div class="md:col-span-7">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <div>
+                            <label for="contact-name" class="block text-xs font-bold text-slate-700 mb-1">Your Name</label>
+                            <input type="text" id="contact-name" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all">
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-xs font-bold text-slate-700 mb-1">Your Email</label>
+                            <input type="email" id="contact-email" required placeholder="john@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all">
+                        </div>
+                        <div>
+                            <label for="contact-message" class="block text-xs font-bold text-slate-700 mb-1">Message</label>
+                            <textarea id="contact-message" rows="4" required placeholder="Hi Basant, I'd like to talk about..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-md shadow-brand-500/20">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="form-response" class="hidden mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-medium text-center border border-emerald-200">
+                        ✨ Message sent successfully! Basant will get back to you soon.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-slate-200 bg-white py-10 px-6 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto space-y-3">
+            <p class="font-semibold text-slate-700">&copy; 2026 Basant Thapa — Web Developer &amp; Student in Nepal.</p>
+            <p class="text-slate-400">Designed with modern responsive HTML5, Tailwind CSS, &amp; search engine structured data.</p>
         </div>
+    </footer>
 
+    <!-- Floating Back to Top Button -->
+    <button id="back-to-top" onclick="scrollToTop()" aria-label="Back to top" class="fixed bottom-6 right-6 w-11 h-11 rounded-full bg-slate-900 text-white shadow-lg flex items-center justify-center text-sm font-bold opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-600 hover:-translate-y-1 z-50">
+        ↑
+    </button>
 
-        <div class="project">
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Dynamic Typing Animation
+        const roles = ["Web Developer", "Student in Nepal", "Problem Solver", "Tech Enthusiast"];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const eraseSpeed = 50;
+        const delayNext = 2000;
+        const typingElement = document.getElementById('typing-text');
 
-            <div class="project-image">
-                🧮
-            </div>
+        function typeEffect() {
+            const currentRole = roles[roleIndex];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
 
-            <div class="project-content">
+            if (!isDeleting && charIndex === currentRole.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, delayNext);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                setTimeout(typeEffect, 300);
+            } else {
+                setTimeout(typeEffect, isDeleting ? eraseSpeed : typingSpeed);
+            }
+        }
 
-                <h3>GPA Calculator</h3>
+        // Skill Category Filter
+        function filterSkills(category) {
+            const cards = document.querySelectorAll('.skill-card');
+            const tabs = document.querySelectorAll('.skill-tab');
 
-                <p>
-                    A simple calculator designed to
-                    calculate student GPA and grades.
-                </p>
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-brand-600', 'text-white', 'shadow-xs');
+                tab.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            });
 
-                <a href="https://basantthapa.com.np/gpa/" class="project-link">
-                    View Project →
-                </a>
+            event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+            event.target.classList.add('bg-brand-600', 'text-white', 'shadow-xs');
 
-            </div>
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
-        </div>
+        // Scroll Progress & Section Reveals & Back-to-Top Button
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
 
+            // Back to top button visibility
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (winScroll > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
 
-        <div class="project">
+            // Reveal sections
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        });
 
-            <div class="project-image">
-                🌐
-            </div>
+        // Scroll to Top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            <div class="project-content">
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-                <h3>My Website</h3>
+        // Contact Form Mockup Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('contact-form');
+            const response = document.getElementById('form-response');
+            form.reset();
+            response.classList.remove('hidden');
+            setTimeout(() => {
+                response.classList.add('hidden');
+            }, 5000);
+        }
 
-                <p>
-                    A responsive personal website
-                    created with modern HTML and CSS.
-                </p>
-
-                <a href="https://basantthapa.com.np/" class="project-link">
-                    View Project →
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONTACT -->
-<section id="contact">
-
-    <div class="section-title">
-        <h2>Let's Connect</h2>
-        <p>Have a project or just want to say hello?</p>
-    </div>
-
-    <div class="contact-box">
-
-        <h2>Get In Touch</h2>
-
-        <p>
-            Feel free to connect with me through
-            my social profiles.
-        </p>
-
-        <div class="socials">
-
-            <a href="https://github.com/your-username" target="_blank">
-                GitHub
-            </a>
-
-            <a href="https://linkedin.com/in/your-username" target="_blank">
-                LinkedIn
-            </a>
-
-            <a href="https://instagram.com/your-username" target="_blank">
-                Instagram
-            </a>
-
-            <a href="mailto:your@email.com">
-                Email
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- FOOTER -->
-<footer>
-    © 2026 Basant Thapa. Built with HTML & CSS.
-</footer>
-
+        // Initialize on window load
+        window.onload = function() {
+            typeEffect();
+            // Trigger initial scroll reveal check
+            window.dispatchEvent(new Event('scroll'));
+        };
+    </script>
 </body>
 </html>
