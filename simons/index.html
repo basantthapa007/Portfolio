@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Presentation</title>
+  <!-- PDF.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; overflow: hidden; background-color: #121212; font-family: Arial, sans-serif; }
+
+    /* Lock Screen Overlay */
+    #lock-screen {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: #121212; display: flex; justify-content: center; align-items: center; z-index: 9999;
+    }
+    .passcode-card {
+      background-color: #1e1e1e; padding: 30px; border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); text-align: center; width: 320px; color: #ffffff;
+    }
+    .passcode-card h2 { font-size: 1.2rem; margin-bottom: 8px; }
+    .passcode-card p { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
+    .passcode-card input[type="password"] {
+      width: 100%; padding: 12px; font-size: 1.2rem; letter-spacing: 4px;
+      text-align: center; border: 1px solid #444; border-radius: 6px;
+      background-color: #2b2b2b; color: #fff; outline: none; margin-bottom: 20px;
+    }
+    .passcode-card button {
+      width: 100%; padding: 10px; background-color: #0078d4; color: white;
+      border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; font-weight: bold;
+    }
+
+    /* Presentation Layout */
+    .viewer-container {
+      display: flex; flex-direction: column; height: 100vh; background: #000;
+    }
+    header {
+      background-color: #1e1e1e; color: #ffffff; padding: 10px 20px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 10;
+    }
+    .controls span { margin: 0 10px; color: #ccc; font-size: 0.9rem; }
+    .btn {
+      background-color: #0078d4; color: white; border: none; padding: 6px 14px;
+      border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.85rem;
+    }
+    .btn:hover { background-color: #005a9e; }
+    
+    .slide-wrapper {
+      flex: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; position: relative;
+    }
+    canvas { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+  </style>
+</head>
+<body>
+
+  <!-- Lock Screen -->
+  <div id="lock-screen">
+    <div class="passcode-card">
+      <h2>Protected Presentation</h2>
+      <p>Enter 6-digit passcode to proceed</p>
+      <form onsubmit="verifyPasscode(event)">
+        <input type="password" id="passcode-input" maxlength="6" placeholder="••••••" autofocus required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Smooth Slide Viewer -->
+  <div class="viewer-container">
+    <header>
+      <div class="controls">
+        <button class="btn" onclick="prevSlide()">◀ Prev</button>
+        <span id="page-num">Slide 1 / 1</span>
+        <button class="btn" onclick="nextSlide()">Next ▶</button>
+      </div>
+      <button class="btn" onclick="toggleFullscreen()">Fullscreen Mode</button>
+    </header>
+
+    <div class="slide-wrapper" id="stage">
+      <canvas id="pdf-render"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const SECRET_CODE = "123456";
+    const REDIRECT_URL = "https://basantthapa.com.np";
+    const PDF_URL = "https://raw.githubusercontent.com/basantthapa007/Portfolio/main/pp/presentation.pdf.pdf";
+
+    let pdfDoc = null, pageNum = 1, pageRendering = false, pageNumPending = null;
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    function verifyPasscode(e) {
+      e.preventDefault();
+      if (document.getElementById("passcode-input").value === SECRET_CODE) {
+        document.getElementById("lock-screen").style.display = "none";
+        initPdf();
+      } else {
+        window.location.href = REDIRECT_URL;
+      }
+    }
+
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale: 2 });
+        const canvas = document.getElementById('pdf-render');
+        const ctx = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = { canvasContext: ctx, viewport: viewport };
+        const renderTask = page.render(renderContext);
+
+        renderTask.promise.then(() => {
+          pageRendering = false;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+      document.getElementById('page-num').textContent = `Slide ${num} / ${pdfDoc.numPages}`;
+    }
+
+    function queueRenderPage(num) {
+      if (pageRendering) pageNumPending = num;
+      else renderPage(num);
+    }
+
+    function prevSlide() { if (pageNum <= 1) return; pageNum--; queueRenderPage(pageNum); }
+    function nextSlide() { if (pageNum >= pdfDoc.numPages) return; pageNum++; queueRenderPage(pageNum); }
+
+    function initPdf() {
+      pdfjsLib.getDocument(PDF_URL).promise.then(doc => {
+        pdfDoc = doc;
+        renderPage(pageNum);
+      });
+    }
+
+    // Keyboard navigation (Arrow keys & Spacebar)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    function toggleFullscreen() {
+      const stage = document.body;
+      if (!document.fullscreenElement) stage.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  </script>
+</body>
+</html>
