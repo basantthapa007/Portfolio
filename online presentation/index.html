@@ -1,1 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Waves Clone</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111827;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            background: #0f172a;
+        }
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            pointer-events: none;
+        }
+        #game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #game-over.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #game-over h1 {
+            font-size: 36px;
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+        #game-over button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        #game-over button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
 
+<div id="game-container">
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <div id="ui">
+        <div id="score">Score: 0</div>
+        <div id="instruction">Hold SPACE / Click to Fly Up</div>
+    </div>
+    <div id="game-over">
+        <h1>GAME OVER</h1>
+        <p id="final-score" style="margin-bottom: 20px; font-size: 20px;">Score: 0</p>
+        <button onclick="resetGame()">Try Again</button>
+    </div>
+</div>
+
+<script>
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const scoreEl = document.getElementById('score');
+const gameOverEl = document.getElementById('game-over');
+const finalScoreEl = document.getElementById('final-score');
+
+let isHolding = false;
+let gameActive = true;
+let score = 0;
+let cameraX = 0;
+
+const player = {
+    x: 100,
+    y: canvas.height / 2,
+    size: 16,
+    speedX: 5,
+    speedY: 5,
+    trail: []
+};
+
+const obstacles = [];
+const boundaryHeight = 40;
+
+function generateObstacle(x) {
+    const isTop = Math.random() > 0.5;
+    const height = Math.random() * 120 + 60;
+    const width = 40;
+    
+    obstacles.push({
+        x: x,
+        y: isTop ? boundaryHeight : canvas.height - boundaryHeight - height,
+        width: width,
+        height: height
+    });
+}
+
+for (let i = 0; i < 5; i++) {
+    generateObstacle(600 + i * 250);
+}
+
+function handleInputStart(e) {
+    if (e.type === 'keydown' && e.code !== 'Space' && e.code !== 'KeyW' && e.code !== 'ArrowUp') return;
+    if (e.type === 'keydown') e.preventDefault();
+    isHolding = true;
+}
+
+function handleInputEnd(e) {
+    if (e.type === 'keyup' && e.code !== 'Space' && e.code !== 'KeyW' && e.code !== 'ArrowUp') return;
+    isHolding = false;
+}
+
+window.addEventListener('keydown', handleInputStart);
+window.addEventListener('keyup', handleInputEnd);
+window.addEventListener('mousedown', handleInputStart);
+window.addEventListener('mouseup', handleInputEnd);
+window.addEventListener('touchstart', (e) => { e.preventDefault(); handleInputStart(e); });
+window.addEventListener('touchend', handleInputEnd);
+
+function resetGame() {
+    player.x = 100;
+    player.y = canvas.height / 2;
+    player.trail = [];
+    score = 0;
+    cameraX = 0;
+    obstacles.length = 0;
+    
+    for (let i = 0; i < 5; i++) {
+        generateObstacle(600 + i * 250);
+    }
+    
+    gameActive = true;
+    gameOverEl.classList.remove('active');
+    requestAnimationFrame(update);
+}
+
+function update() {
+    if (!gameActive) return;
+
+    player.x += player.speedX;
+    if (isHolding) {
+        player.y -= player.speedY;
+    } else {
+        player.y += player.speedY;
+    }
+
+    cameraX = player.x - 150;
+
+    player.trail.push({ x: player.x, y: player.y });
+    if (player.trail.length > 50) {
+        player.trail.shift();
+    }
+
+    score = Math.floor(player.x / 10) - 10;
+    scoreEl.innerText = `Score: ${Math.max(0, score)}`;
+
+    if (player.y - player.size < boundaryHeight || player.y + player.size > canvas.height - boundaryHeight) {
+        endGame();
+        return;
+    }
+
+    const playerBox = {
+        left: player.x - player.size,
+        right: player.x + player.size,
+        top: player.y - player.size,
+        bottom: player.y + player.size
+    };
+
+    for (let i = 0; i < obstacles.length; i++) {
+        let obs = obstacles[i];
+
+        if (
+            playerBox.right > obs.x &&
+            playerBox.left < obs.x + obs.width &&
+            playerBox.bottom > obs.y &&
+            playerBox.top < obs.y + obs.height
+        ) {
+            endGame();
+            return;
+        }
+
+        if (obs.x + obs.width < cameraX - 100) {
+            obstacles.splice(i, 1);
+            const lastObstacleX = obstacles[obstacles.length - 1].x;
+            generateObstacle(lastObstacleX + 250);
+            i--;
+        }
+    }
+
+    draw();
+    requestAnimationFrame(update);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    ctx.translate(-cameraX, 0);
+
+    ctx.fillStyle = '#1e293b';
+    ctx.fillRect(cameraX, 0, canvas.width, boundaryHeight);
+    ctx.fillRect(cameraX, canvas.height - boundaryHeight, canvas.width, boundaryHeight);
+    
+    ctx.strokeStyle = '#38bdf8';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(cameraX, boundaryHeight);
+    ctx.lineTo(cameraX + canvas.width, boundaryHeight);
+    ctx.moveTo(cameraX, canvas.height - boundaryHeight);
+    ctx.lineTo(cameraX + canvas.width, canvas.height - boundaryHeight);
+    ctx.stroke();
+
+    ctx.fillStyle = '#ef4444';
+    ctx.strokeStyle = '#b91c1c';
+    ctx.lineWidth = 2;
+    for (let obs of obstacles) {
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+        ctx.strokeRect(obs.x, obs.y, obs.width, obs.height);
+    }
+
+    if (player.trail.length > 1) {
+        ctx.beginPath();
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 4;
+        ctx.moveTo(player.trail[0].x, player.trail[0].y);
+        for (let i = 1; i < player.trail.length; i++) {
+            ctx.lineTo(player.trail[i].x, player.trail[i].y);
+        }
+        ctx.stroke();
+    }
+
+    ctx.save();
+    ctx.translate(player.x, player.y);
+    const angle = isHolding ? -Math.PI / 4 : Math.PI / 4;
+    ctx.rotate(angle);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(14, 0);
+    ctx.lineTo(-10, -10);
+    ctx.lineTo(-4, 0);
+    ctx.lineTo(-10, 10);
+    ctx.closePath();
+    ctx.fill();
+    
+    ctx.restore();
+    ctx.restore();
+}
+
+function endGame() {
+    gameActive = false;
+    finalScoreEl.innerText = `Score: ${Math.max(0, score)}`;
+    gameOverEl.classList.add('active');
+}
+
+requestAnimationFrame(update);
+</script>
+
+</body>
+</html>
