@@ -19,13 +19,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         header {
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         header h1 {
@@ -39,34 +38,6 @@
         header p {
             color: #aaa;
             font-size: 1.1rem;
-        }
-
-        /* Quick Dropdown Selector Section */
-        .selector-box {
-            background-color: #1e1e1e;
-            padding: 15px 25px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid #333;
-        }
-
-        .selector-box label {
-            font-weight: 600;
-            color: #ddd;
-        }
-
-        .selector-box select {
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: 1px solid #00ff88;
-            background-color: #2a2a2a;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            outline: none;
         }
 
         /* Game Cards Grid */
@@ -98,11 +69,11 @@
         .game-thumb {
             width: 100%;
             height: 160px;
-            background-color: #333;
+            background-color: #262626;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 3.5rem;
         }
 
         .game-info {
@@ -122,7 +93,7 @@
             margin-bottom: 20px;
         }
 
-        /* Play Button Link */
+        /* Redirect Button */
         .play-btn {
             display: inline-block;
             width: 100%;
@@ -149,19 +120,7 @@
         <p>Choose a game below to start playing!</p>
     </header>
 
-    <!-- Option 1: Quick Dropdown Menu Redirection -->
-    <div class="selector-box">
-        <label for="gameSelect">Quick Select Game:</label>
-        <select id="gameSelect" onchange="redirectGame(this.value)">
-            <option value="">-- Choose a Game --</option>
-            <option value="tic-tac-toe.html">Tic Tac Toe</option>
-            <option value="snake-game.html">Snake Game</option>
-            <option value="flappy-bird.html">Flappy Bird</option>
-            <option value="https://example.com/external-game">External Game (URL)</option>
-        </select>
-    </div>
-
-    <!-- Option 2: Visual Game Cards Grid -->
+    <!-- Visual Game Cards Grid -->
     <div class="games-grid">
 
         <!-- Game 1 -->
@@ -170,7 +129,6 @@
             <div class="game-info">
                 <h3>Tic Tac Toe</h3>
                 <p>Classic 2-player grid game. Get 3 in a row to win!</p>
-                <!-- Set href to your game's HTML file or URL -->
                 <a href="tic-tac-toe.html" class="play-btn">Play Now</a>
             </div>
         </div>
@@ -181,7 +139,6 @@
             <div class="game-info">
                 <h3>Snake Game</h3>
                 <p>Eat apples, grow long, and avoid crashing into walls.</p>
-                <!-- Set href to your game's HTML file or URL -->
                 <a href="snake-game.html" class="play-btn">Play Now</a>
             </div>
         </div>
@@ -192,7 +149,6 @@
             <div class="game-info">
                 <h3>Flappy Bird</h3>
                 <p>Fly through obstacles and aim for the high score.</p>
-                <!-- Set href to your game's HTML file or URL -->
                 <a href="flappy-bird.html" class="play-btn">Play Now</a>
             </div>
         </div>
@@ -203,21 +159,11 @@
             <div class="game-info">
                 <h3>Space Shooter</h3>
                 <p>Defend the galaxy against endless waves of enemies.</p>
-                <!-- Set href to your game's HTML file or URL -->
                 <a href="space-shooter.html" class="play-btn">Play Now</a>
             </div>
         </div>
 
     </div>
-
-    <script>
-        // Function to redirect when selecting an option from the dropdown menu
-        function redirectGame(url) {
-            if (url !== "") {
-                window.location.href = url; // Redirects the browser to the selected page
-            }
-        }
-    </script>
 
 </body>
 </html>
