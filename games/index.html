@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page Navigation & Selector</title>
+    <title>Game Launcher - Select Your Game</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,199 +13,209 @@
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            background-color: #121212;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* Navigation Bar Header */
         header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 2rem;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+
+        /* Quick Dropdown Selector Section */
+        .selector-box {
+            background-color: #1e1e1e;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 15px;
+            border: 1px solid #333;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .selector-box label {
+            font-weight: 600;
+            color: #ddd;
         }
 
-        /* Method 1: Standard Link Bar */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
-
-        nav a {
-            color: #ecf0f1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            color: #1abc9c;
-        }
-
-        /* Method 2: Page Selector Dropdown */
-        .selector-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #34495e;
-            padding: 5px 12px;
-            border-radius: 5px;
-        }
-
-        .selector-container label {
-            font-size: 0.9rem;
-            color: #ecf0f1;
-        }
-
-        .selector-container select {
-            padding: 6px 12px;
-            border-radius: 4px;
-            border: none;
-            background-color: white;
-            color: #333;
-            font-size: 0.9rem;
+        .selector-box select {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #00ff88;
+            background-color: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
             cursor: pointer;
             outline: none;
         }
 
-        /* Main Content Container */
-        .main-container {
-            max-width: 1000px;
-            margin: 40px auto;
+        /* Game Cards Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .game-card {
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            border-color: #00ff88;
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .game-thumb {
+            width: 100%;
+            height: 160px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .game-info {
             padding: 20px;
-            background: white;
+            text-align: center;
+        }
+
+        .game-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .game-info p {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        /* Play Button Link */
+        .play-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background-color: #00ff88;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s ease;
+            text-align: center;
         }
 
-        /* Method 3: Dynamic Tab Sections (In-Page Switching) */
-        .page-section {
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .page-section.active-section {
-            display: block; /* Displayed when active */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        p {
-            margin-bottom: 15px;
+        .play-btn:hover {
+            background-color: #00cc6a;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigation Bar -->
     <header>
-        <div class="logo">MyWebsite</div>
-
-        <!-- Method 1: Traditional Navbar Links -->
-        <nav>
-            <ul>
-                <li><a href="#home" class="nav-link active" onclick="switchPage('home')">Home</a></li>
-                <li><a href="#about" class="nav-link" onclick="switchPage('about')">About</a></li>
-                <li><a href="#services" class="nav-link" onclick="switchPage('services')">Services</a></li>
-                <li><a href="#contact" class="nav-link" onclick="switchPage('contact')">Contact</a></li>
-            </ul>
-        </nav>
-
-        <!-- Method 2: Page Selector Dropdown -->
-        <div class="selector-container">
-            <label for="pageSelector">Go to Page:</label>
-            <select id="pageSelector" onchange="navigateToSelectedPage(this.value)">
-                <option value="home">Home Page</option>
-                <option value="about">About Us</option>
-                <option value="services">Services</option>
-                <option value="contact">Contact Us</option>
-                <!-- For external HTML files, change values to URLs like "about.html" -->
-            </select>
-        </div>
+        <h1>🎮 Game Hub</h1>
+        <p>Choose a game below to start playing!</p>
     </header>
 
-    <!-- Main Content Sections -->
-    <main class="main-container">
+    <!-- Option 1: Quick Dropdown Menu Redirection -->
+    <div class="selector-box">
+        <label for="gameSelect">Quick Select Game:</label>
+        <select id="gameSelect" onchange="redirectGame(this.value)">
+            <option value="">-- Choose a Game --</option>
+            <option value="tic-tac-toe.html">Tic Tac Toe</option>
+            <option value="snake-game.html">Snake Game</option>
+            <option value="flappy-bird.html">Flappy Bird</option>
+            <option value="https://example.com/external-game">External Game (URL)</option>
+        </select>
+    </div>
 
-        <!-- Section 1: Home -->
-        <section id="home" class="page-section active-section">
-            <h1>Welcome to the Home Page</h1>
-            <p>This is the main dashboard or landing page of your application.</p>
-        </section>
+    <!-- Option 2: Visual Game Cards Grid -->
+    <div class="games-grid">
 
-        <!-- Section 2: About -->
-        <section id="about" class="page-section">
-            <h1>About Us</h1>
-            <p>Learn more about our mission, vision, and team here.</p>
-        </section>
+        <!-- Game 1 -->
+        <div class="game-card">
+            <div class="game-thumb">❌⭕</div>
+            <div class="game-info">
+                <h3>Tic Tac Toe</h3>
+                <p>Classic 2-player grid game. Get 3 in a row to win!</p>
+                <!-- Set href to your game's HTML file or URL -->
+                <a href="tic-tac-toe.html" class="play-btn">Play Now</a>
+            </div>
+        </div>
 
-        <!-- Section 3: Services -->
-        <section id="services" class="page-section">
-            <h1>Our Services</h1>
-            <p>Explore the wide range of services and solutions we provide.</p>
-        </section>
+        <!-- Game 2 -->
+        <div class="game-card">
+            <div class="game-thumb">🐍</div>
+            <div class="game-info">
+                <h3>Snake Game</h3>
+                <p>Eat apples, grow long, and avoid crashing into walls.</p>
+                <!-- Set href to your game's HTML file or URL -->
+                <a href="snake-game.html" class="play-btn">Play Now</a>
+            </div>
+        </div>
 
-        <!-- Section 4: Contact -->
-        <section id="contact" class="page-section">
-            <h1>Contact Us</h1>
-            <p>Get in touch with our team via email or phone.</p>
-        </section>
+        <!-- Game 3 -->
+        <div class="game-card">
+            <div class="game-thumb">🐦</div>
+            <div class="game-info">
+                <h3>Flappy Bird</h3>
+                <p>Fly through obstacles and aim for the high score.</p>
+                <!-- Set href to your game's HTML file or URL -->
+                <a href="flappy-bird.html" class="play-btn">Play Now</a>
+            </div>
+        </div>
 
-    </main>
+        <!-- Game 4 -->
+        <div class="game-card">
+            <div class="game-thumb">🎯</div>
+            <div class="game-info">
+                <h3>Space Shooter</h3>
+                <p>Defend the galaxy against endless waves of enemies.</p>
+                <!-- Set href to your game's HTML file or URL -->
+                <a href="space-shooter.html" class="play-btn">Play Now</a>
+            </div>
+        </div>
 
-    <!-- JavaScript for Handling Page Switching -->
+    </div>
+
     <script>
-        // Function to switch visible section dynamically (Single Page Switcher)
-        function switchPage(pageId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => section.classList.remove('active-section'));
-
-            // Show selected section
-            const activeTarget = document.getElementById(pageId);
-            if (activeTarget) {
-                activeTarget.classList.add('active-section');
+        // Function to redirect when selecting an option from the dropdown menu
+        function redirectGame(url) {
+            if (url !== "") {
+                window.location.href = url; // Redirects the browser to the selected page
             }
-
-            // Update navbar link styling
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${pageId}`) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Sync the dropdown selector value
-            document.getElementById('pageSelector').value = pageId;
-        }
-
-        // Function called by the Dropdown menu
-        function navigateToSelectedPage(value) {
-            // If navigating to multi-page files (e.g. "about.html"), use:
-            // window.location.href = value;
-
-            // For dynamic in-page tab switching:
-            switchPage(value);
         }
     </script>
 
