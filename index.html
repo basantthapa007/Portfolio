@@ -1,750 +1,676 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2195037554780501"
-     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    
-    <!-- Primary Title & SEO Tags -->
-    <title>Basant Thapa — Web Developer & Student | Official Portfolio</title>
-    <meta name="description" content="Official website of Basant Thapa, a passionate Web Developer and Student . Discover web development projects, GPA calculator, retro games, and contact info.">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>General Certificate of Secondary Education & Learning Hub | Basant Thapa</title>
+    <meta name="description" content="Free educational portal by Basant Thapa offering Class 9 to 12 Computer Engineering notes, free student online tools, academic news, and learning resources in Nepal.">
+    <meta name="keywords" content="Basant Thapa, Computer Engineering Notes, Grade 9 Notes, Grade 10 Notes, Grade 11 Notes, Grade 12 Notes, NEB Nepal, Free Student Tools, GPA Calculator, Education Nepal">
     <meta name="author" content="Basant Thapa">
-    <meta name="keywords" content="Basant Thapa, Basant Thapa Portfolio, Basant Thapa Nepal, Basant Thapa Web Developer, Basant Thapa Student, Web Developer Nepal, Basant Thapa GPA Calculator">
-    <link rel="canonical" href="https://basantthapa.com.np/">
-    <!-- Open Graph Meta Tags (Social Media & Google Cards) -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://basanthapa.com.np/">
+
+    <!-- Open Graph / Facebook / WhatsApp SEO -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Basant Thapa Portfolio">
-    <meta property="og:url" content="https://basantthapa.com.np/">
-    <meta property="og:title" content="Basant Thapa — Web Developer & Student | Official Portfolio">
-    <meta property="og:description" content="Explore projects, applications, and web development skills of Basant Thapa from Nepal.">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=Basant+Thapa+Portfolio">
+    <meta property="og:url" content="https://basanthapa.com.np/">
+    <meta property="og:title" content="GCSE & Computer Engineering Notes | Basant Thapa">
+    <meta property="og:description" content="Access free Class 9-12 Computer Engineering notes, GPA calculator, note conversion tools, and educational news.">
+    <meta property="og:image" content="https://basanthapa.com.np/og-image.jpg">
 
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter Card SEO -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Basant Thapa — Web Developer & Student (Nepal)">
-    <meta name="twitter:description" content="Official portfolio and projects by Basant Thapa.">
-    <meta name="twitter:image" content="https://placehold.co/1200x630/4f46e5/ffffff?text=Basant+Thapa+Portfolio">
+    <meta name="twitter:url" content="https://basanthapa.com.np/">
+    <meta name="twitter:title" content="GCSE & Computer Engineering Notes | Basant Thapa">
+    <meta name="twitter:description" content="Access free Class 9-12 Computer Engineering notes, GPA calculator, note conversion tools, and educational news.">
+    <meta name="twitter:image" content="https://basanthapa.com.np/og-image.jpg">
 
-    <!-- Schema.org Person & Website Structured Data -->
+    <!-- Schema.org JSON-LD Structured Data for Google Indexing -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://basantthapa.com.np/#person",
-          "name": "Basant Thapa",
-          "alternateName": ["Basant Thapa Nepal", "Basant Thapa Web Developer"],
-          "url": "https://basantthapa.com.np/",
-          "jobTitle": "Web Developer & Student",
-          "nationality": "Nepali",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "Nepal"
-          },
-          "knowsAbout": [
-            "Web Development",
-            "JavaScript",
-            "HTML5",
-            "CSS3",
-            "UI/UX Design",
-            "Software Engineering"
-          ],
-          "sameAs": [
-            "https://github.com/your-username",
-            "https://linkedin.com/in/your-username",
-            "https://instagram.com/your-username"
-          ],
-          "mainEntityOfPage": "https://basantthapa.com.np/"
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://basantthapa.com.np/#website",
-          "url": "https://basantthapa.com.np/",
-          "name": "Basant Thapa Official Website",
-          "description": "Official Portfolio of Basant Thapa - Web Developer and Student in Nepal.",
-          "publisher": {
-            "@id": "https://basantthapa.com.np/#person"
-          },
-          "inLanguage": "en-US"
-        }
-      ]
+      "@type": "EducationalOrganization",
+      "name": "Basant Thapa Educational Hub",
+      "url": "https://basanthapa.com.np/",
+      "description": "Free Computer Engineering notes, curriculum resources, and online student tools.",
+      "founder": {
+        "@type": "Person",
+        "name": "Basant Thapa"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mircchaiya-11, Siraha",
+        "addressCountry": "NP"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Basant Thapa Educational Portal",
+      "url": "https://basanthapa.com.np/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://basanthapa.com.np/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Tailwind Configuration -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                50: '#eef2ff',
-                100: '#e0e7ff',
-                500: '#6366f1',
-                600: '#4f46e5',
-                700: '#4338ca',
-              },
-              accent: '#06b6d4',
-            },
-            fontFamily: {
-              sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-            }
-          }
-        }
-      }
-    </script>
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        html {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-            overflow-x: hidden;
+            background-color: #f3f4f6;
+            color: #333;
         }
 
-        /* Ambient Glow Animations */
-        @keyframes floatGlow {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -20px) scale(1.1); }
+        /* Navbar Styling */
+        header {
+            background-color: #2563eb;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .glow-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.4;
-            animation: floatGlow 12s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 0;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+
+        nav ul li {
+            position: relative;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+
+        nav ul li a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+
+        /* Navbar Search Bar Container */
+        .nav-search-container {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+        }
+
+        .nav-search-input {
+            border: none;
+            outline: none;
+            padding: 0.3rem;
+            font-size: 0.9rem;
+            width: 140px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-search-input:focus {
+            width: 180px;
+        }
+
+        .nav-search-btn {
+            background: none;
+            border: none;
+            color: #2563eb;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5%;
+            min-height: 60vh;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #e0e7ff;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #22c55e;
+            color: white;
+            padding: 0.75rem 2rem;
             border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Typing Effect Caret */
-        .cursor-blink::after {
-            content: '|';
-            animation: blink 0.8s infinite;
-            color: #4f46e5;
-            font-weight: 700;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.3s;
         }
 
-        /* Glassmorphic Navbar */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        .btn:hover {
+            background-color: #16a34a;
         }
 
-        /* Reveal Section Fade Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            font-size: 5rem;
         }
 
-        /* Card Hover Depth */
-        .hover-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* General Section Styling */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 20px;
         }
-        .hover-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
-            border-color: #c7d2fe;
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: #1f2937;
+        }
+
+        /* Notes, News & Tools Cards Grid */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #2563eb;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-link:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: 2rem 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-content {
+            line-height: 1.7;
+            color: #4b5563;
+            font-size: 1.05rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer Main Container Styles */
+        .site-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #ccc;
+            font-family: Arial, sans-serif;
+            color: #333;
+            position: relative;
+            padding-top: 40px;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 20px 50px 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+            margin-bottom: 20px;
+            padding-right: 15px;
+        }
+
+        /* Footer Headings */
+        .footer-col h3.footer-heading {
+            color: #b30000;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+
+        /* Contact & Link Lists */
+        .contact-list, .links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .contact-list li i {
+            color: #b30000;
+            margin-right: 8px;
+            font-size: 15px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .links-list li {
+            margin-bottom: 10px;
+        }
+
+        .links-list li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .links-list li a i {
+            color: #b30000;
+            margin-right: 8px;
+            font-size: 15px;
+        }
+
+        .links-list li a:hover {
+            color: #b30000;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .social-icon.facebook { background-color: #3b5998; }
+        .social-icon.twitter { background-color: #1da1f2; }
+        .social-icon.youtube { background-color: #ff0000; }
+
+        /* Brand Column */
+        .brand-logo {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .logo-yb {
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 32px;
+            color: #d81b60;
+            font-weight: bold;
+            font-style: italic;
+            margin-right: 4px;
+        }
+
+        .logo-text {
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 24px;
+            color: #d81b60;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .brand-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+            max-width: 260px;
+        }
+
+        /* Footer Bottom Bar */
+        .footer-bottom {
+            background-color: #7b7373;
+            text-align: center;
+            padding: 12px 0;
+            border-top: 1px solid #999;
+        }
+
+        .footer-bottom p {
+            color: #ffcccc;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: absolute;
+            right: 20px;
+            bottom: 50px;
+            background-color: #00008b;
+            color: #fff;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 2px 2px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .back-to-top:hover {
+            background-color: #000066;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
+<body>
 
-<body class="relative text-slate-800 bg-slate-50 selection:bg-brand-500 selection:text-white">
-
-    <!-- Top Scroll Progress Indicator -->
-    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-brand-600 to-accent z-50 transition-all duration-150" style="width: 0%;"></div>
-
-    <!-- Ambient Floating Light Blobs -->
-    <div class="glow-blob w-96 h-96 bg-brand-100 top-10 left-[-100px]"></div>
-    <div class="glow-blob w-96 h-96 bg-cyan-100 top-[400px] right-[-100px] animation-delay-2000"></div>
-
-    <!-- HEADER / NAVBAR -->
-    <header class="fixed top-0 left-0 w-full z-40 glass-nav">
-        <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between py-4">
-            <!-- Brand Logo -->
-            <a href="https://basantthapa.com.np/" class="text-xl font-black tracking-tight text-slate-900 group flex items-center gap-2">
-                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-accent text-white flex items-center justify-center text-sm font-extrabold shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
-                    BT
-                </span>
-                <span>Basant<span class="text-brand-600">Thapa</span></span>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
-                <a href="#home" class="hover:text-brand-600 transition-colors">Home</a>
-                <a href="#about" class="hover:text-brand-600 transition-colors">About</a>
-                <a href="#skills" class="hover:text-brand-600 transition-colors">Skills</a>
-                <a href="#projects" class="hover:text-brand-600 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-brand-600 transition-colors">Contact</a>
-            </nav>
-
-            <!-- CTA Header Button -->
-            <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-brand-600 rounded-lg shadow-sm hover:shadow-md transition-all">
-                Let's Talk
-            </a>
-
-            <!-- Mobile Hamburger Button -->
-            <button id="menu-btn" class="md:hidden text-slate-700 hover:text-brand-600 focus:outline-none" aria-label="Toggle Navigation">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 font-medium text-sm text-slate-600">
-            <a href="#home" class="block hover:text-brand-600 transition-colors">Home</a>
-            <a href="#about" class="block hover:text-brand-600 transition-colors">About</a>
-            <a href="#skills" class="block hover:text-brand-600 transition-colors">Skills</a>
-            <a href="#projects" class="block hover:text-brand-600 transition-colors">Projects</a>
-            <a href="#contact" class="block hover:text-brand-600 transition-colors">Contact</a>
-        </div>
+    <!-- Header / Navbar -->
+    <header>
+        <a href="#" class="logo" aria-label="Basant Thapa Home">BT</a>
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#notes">Notes</a></li>
+                <li><a href="#tools">Online Tools</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact-details">Contact</a></li>
+                <li>
+                    <div class="nav-search-container">
+                        <input type="text" id="searchInput" class="nav-search-input" placeholder="Search notes..." aria-label="Search study notes">
+                        <button onclick="performSearch()" class="nav-search-btn" aria-label="Submit search"><i class="fas fa-search"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="relative z-10 pt-20">
-
-        <!-- HERO SECTION -->
-        <section id="home" class="min-h-[88vh] flex items-center justify-center px-6 py-16 relative">
-            <div class="max-w-4xl mx-auto text-center space-y-8">
-                
-                <!-- Status Badge -->
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 border border-brand-100 text-brand-700 text-xs font-semibold shadow-xs">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Available for Projects &amp; Collaborations
-                </div>
-
-                <!-- Main Heading -->
-                <div class="space-y-4">
-                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                        Hi, I'm <span class="bg-gradient-to-r from-brand-600 via-indigo-600 to-accent bg-clip-text text-transparent">Basant Thapa</span>
-                    </h1>
-                    <p class="text-xl sm:text-2xl font-semibold text-slate-600 h-10 flex items-center justify-center gap-2">
-                        I am a <span id="typing-text" class="text-brand-600 cursor-blink"></span>
-                    </p>
-                </div>
-
-                <!-- Description -->
-                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                    Passionate student and developer based. Crafting user-friendly web applications, clean responsive interfaces, and simple modern solutions.
-                </p>
-
-                <!-- Action Buttons -->
-                <div class="flex flex-wrap justify-center items-center gap-4 pt-2">
-                    <a href="#projects" class="px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 transition-all">
-                        Explore Work
-                    </a>
-                    <a href="#contact" class="px-7 py-3.5 rounded-xl font-bold text-sm text-slate-700 bg-white border border-slate-200 hover:bg-slate-100 hover:border-slate-300 shadow-sm hover:-translate-y-0.5 transition-all">
-                        Get In Touch
-                    </a>
-                </div>
-
-                <!-- Fast Highlights Bar -->
-                <div class="pt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
-                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
-                        <div class="text-2xl font-black text-brand-600">100%</div>
-                        <div class="text-xs font-medium text-slate-500">Dedication</div>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
-                        <div class="text-2xl font-black text-brand-600">Nepal</div>
-                        <div class="text-xs font-medium text-slate-500">Based Location</div>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
-                        <div class="text-2xl font-black text-brand-600">Web</div>
-                        <div class="text-xs font-medium text-slate-500">Development</div>
-                    </div>
-                    <div class="p-4 rounded-xl bg-white/70 border border-slate-200/80 shadow-xs backdrop-blur-sm">
-                        <div class="text-2xl font-black text-brand-600">2026</div>
-                        <div class="text-xs font-medium text-slate-500">Active Portfolio</div>
-                    </div>
-                </div>
-
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Education for a Brighter Tomorrow</h1>
+                <p>Access high-quality curriculum notes, computer engineering resources, tools, and updates completely free.</p>
+                <a href="#notes" class="btn">Explore Notes</a>
+            </div>
+            <div class="hero-image" aria-hidden="true">
+                🎓📚
             </div>
         </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about" class="py-20 px-6 max-w-6xl mx-auto reveal">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Personal Background</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">About Basant Thapa</h3>
-                <p class="text-slate-500 mt-3 text-sm sm:text-base">Driven by curiosity, continuous learning, and passion for technology.</p>
-            </div>
-
-            <div class="grid md:grid-cols-12 gap-8 items-center">
-                <!-- Profile & Bio Left Column -->
-                <div class="md:col-span-7 space-y-6">
-                    <div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm space-y-4">
-                        <h4 class="text-2xl font-bold text-slate-900">Developer &amp; Lifelong Learner 👋</h4>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            Hello! I am <strong class="text-slate-900">Basant Thapa</strong>, an enthusiastic web developer and student based in Nepal. I love transforming ideas into real, accessible, and functional browser applications.
-                        </p>
-                        <p class="text-slate-600 text-sm leading-relaxed">
-                            My journey in web development centers around mastering front-end techniques, crafting responsive layouts, understanding basic software architecture, and continuously learning modern tools.
-                        </p>
-                        <div class="pt-2 flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Student</span>
-                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Problem Solver</span>
-                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Frontend Enthusiast</span>
-                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">Nepal</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Structured Info Right Column -->
-                <div class="md:col-span-5">
-                    <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-md space-y-4">
-                        <h4 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Quick Overview</h4>
-                        <ul class="space-y-3.5 text-sm">
-                            <li class="flex justify-between items-center">
-                                <span class="text-slate-500 font-medium">Name:</span>
-                                <span class="font-bold text-slate-800">Basant Thapa</span>
-                            </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-slate-500 font-medium">Role:</span>
-                                <span class="font-bold text-slate-800">Web Developer &amp; Student</span>
-                            </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-slate-500 font-medium">Country:</span>
-                                <span class="font-bold text-slate-800">Nepal 🇳🇵</span>
-                            </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-slate-500 font-medium">Domain:</span>
-                                <span class="font-bold text-brand-600">basantthapa.com.np</span>
-                            </li>
-                            <li class="flex justify-between items-center">
-                                <span class="text-slate-500 font-medium">Status:</span>
-                                <span class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800">Open for Work</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Notes Section -->
+        <section id="notes" class="container">
+            <h2 class="section-title">General Certificate of Secondary Education Notes</h2>
+            <div class="cards-container">
+                <article class="card">
+                    <h3>Class Nine Computer Engineering Note</h3>
+                    <p>Comprehensive theory and practical guidelines tailored for Grade 9 students.</p>
+                    <a href="#" class="card-link">Read Note <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Class Ten Computer Engineering Note</h3>
+                    <p>Structured curriculum notes and revision guides for secondary level exams.</p>
+                    <a href="#" class="card-link">Read Note <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Class Eleven Computer Engineering Note</h3>
+                    <p>Advanced programming concepts, hardware architecture, and core modules.</p>
+                    <a href="#" class="card-link">Read Note <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Class Twelve Computer Engineering Note</h3>
+                    <p>In-depth analytical frameworks, networking, and project development notes.</p>
+                    <a href="#" class="card-link">Read Note <i class="fas fa-arrow-right"></i></a>
+                </article>
             </div>
         </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills" class="py-20 px-6 max-w-6xl mx-auto reveal">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Capabilities</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Technical Skills</h3>
-                <p class="text-slate-500 mt-3 text-sm sm:text-base">Technologies and methodologies I work with.</p>
-
-                <!-- Filter Tabs -->
-                <div class="flex justify-center gap-2 mt-8">
-                    <button onclick="filterSkills('all')" class="skill-tab active px-4 py-2 rounded-lg text-xs font-bold transition-all bg-brand-600 text-white shadow-xs">All</button>
-                    <button onclick="filterSkills('frontend')" class="skill-tab px-4 py-2 rounded-lg text-xs font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-100">Frontend</button>
-                    <button onclick="filterSkills('concepts')" class="skill-tab px-4 py-2 rounded-lg text-xs font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-100">Concepts &amp; Tools</button>
-                </div>
-            </div>
-
-            <!-- Skills Grid -->
-            <div id="skills-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- HTML & CSS -->
-                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl font-black mb-4">
-                        🌐
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">HTML5 &amp; CSS3</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Responsive modern layouts, Flexbox, Grid, semantic HTML structure, and clean styling.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-orange-500 h-full rounded-full" style="width: 90%;"></div>
-                    </div>
-                </div>
-
-                <!-- JavaScript -->
-                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-600 flex items-center justify-center text-2xl font-black mb-4">
-                        ⚡
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">JavaScript (ES6+)</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">DOM manipulation, dynamic features, async logic, event handling, and interactive elements.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-yellow-500 h-full rounded-full" style="width: 82%;"></div>
-                    </div>
-                </div>
-
-                <!-- Tailwind CSS & UI Design -->
-                <div class="skill-card frontend hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-2xl font-black mb-4">
-                        🎨
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">UI &amp; Tailored Design</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Building aesthetic light/dark layouts, utility-first design, icons, and micro-interactions.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-cyan-500 h-full rounded-full" style="width: 85%;"></div>
-                    </div>
-                </div>
-
-                <!-- Programming Logic -->
-                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-brand-600 flex items-center justify-center text-2xl font-black mb-4">
-                        🧠
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">Algorithms &amp; Problem Solving</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Logical problem solving, array manipulations, data handling, and code optimization.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-brand-600 h-full rounded-full" style="width: 78%;"></div>
-                    </div>
-                </div>
-
-                <!-- Web Optimization & SEO -->
-                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-black mb-4">
-                        🚀
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">SEO &amp; Web Performance</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Structured JSON-LD schema, search engine optimization, fast load times, and meta tags.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-emerald-500 h-full rounded-full" style="width: 88%;"></div>
-                    </div>
-                </div>
-
-                <!-- Git & Deployment -->
-                <div class="skill-card concepts hover-card p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
-                    <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center text-2xl font-black mb-4">
-                        🛠️
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-1">Tools &amp; Deployment</h4>
-                    <p class="text-slate-500 text-xs leading-relaxed mb-4">Git version control, hosting platforms, domain setup, and browser debugging.</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                        <div class="bg-slate-700 h-full rounded-full" style="width: 80%;"></div>
-                    </div>
-                </div>
+        <!-- Online Tools Section -->
+        <section id="tools" class="container" style="padding-top: 0;">
+            <h2 class="section-title">Free Student Online Tools</h2>
+            <div class="cards-container">
+                <article class="card">
+                    <h3>GPA & Percentage Calculator</h3>
+                    <p>Quickly calculate your GPA or total marks percentage according to the official NEB grading system.</p>
+                    <a href="#" class="card-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Code & Syntax Formatter</h3>
+                    <p>Format and clean C, C++, HTML, and JavaScript code snippets for homework assignments.</p>
+                    <a href="#" class="card-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Note to PDF Converter</h3>
+                    <p>Export your digital study notes directly into clean, printable PDF documents.</p>
+                    <a href="#" class="card-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Unit & Data Converter</h3>
+                    <p>Convert bytes, KB, MB, and physical metric units effortlessly for computer science problems.</p>
+                    <a href="#" class="card-link">Use Tool <i class="fas fa-arrow-right"></i></a>
+                </article>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION -->
-        <section id="projects" class="py-20 px-6 max-w-6xl mx-auto reveal">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Portfolio Showcase</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Featured Projects</h3>
-                <p class="text-slate-500 mt-3 text-sm sm:text-base">Applications and projects created by Basant Thapa.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-
-                <!-- Project 1: GPA Calculator -->
-                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="h-44 bg-gradient-to-br from-indigo-50 to-brand-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
-                            <span class="group-hover:scale-110 transition-transform duration-300">🧮</span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-brand-700 shadow-xs">Utility App</span>
-                        </div>
-                        <div class="p-6 space-y-3">
-                            <h4 class="text-xl font-bold text-slate-900">GPA Calculator</h4>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                A simple and accurate web calculator built for students in Nepal to calculate overall GPA, grades, and percentage metrics instantly.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2">
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">HTML/CSS</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">JavaScript</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Education</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://basantthapa.com.np/gpa/" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
-                            Open Project &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2: Retro Snake Game -->
-                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="h-44 bg-gradient-to-br from-emerald-50 to-teal-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
-                            <span class="group-hover:scale-110 transition-transform duration-300">🐍</span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-emerald-700 shadow-xs">Browser Game</span>
-                        </div>
-                        <div class="p-6 space-y-3">
-                            <h4 class="text-xl font-bold text-slate-900">Retro Snake Game</h4>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                Classic Nokia-style Snake game built with JavaScript canvas logic, score counter, smooth arrow key controls, and retro visuals.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2">
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">JS Canvas</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Game Logic</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">CSS3</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://basantthapa.com.np/snake/" target="_blank" rel="noopener" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
-                            Play Game &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 3: Official Portfolio -->
-                <div class="hover-card rounded-2xl bg-white border border-slate-200/80 shadow-sm overflow-hidden flex flex-col justify-between">
-                    <div>
-                        <div class="h-44 bg-gradient-to-br from-sky-50 to-cyan-100 flex items-center justify-center text-5xl border-b border-slate-100 relative group overflow-hidden">
-                            <span class="group-hover:scale-110 transition-transform duration-300">🌐</span>
-                            <span class="absolute top-3 right-3 px-2.5 py-1 bg-white/90 backdrop-blur-md rounded-md text-[10px] font-bold text-cyan-700 shadow-xs">Personal Web</span>
-                        </div>
-                        <div class="p-6 space-y-3">
-                            <h4 class="text-xl font-bold text-slate-900">Simons'site</h4>
-                            <p class="text-slate-600 text-xs leading-relaxed">
-                                Highly optimized light-theme personal web portal featuring JSON-LD structured data, responsive UI, dynamic animations, and fast loading speed.
-                            </p>
-                            <div class="flex flex-wrap gap-1.5 pt-2">
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">SEO Optimized</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Tailwind CSS</span>
-                                <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium">Schema.org</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0">
-                        <a href="https://basantthapa.com.np/simons/" class="inline-flex items-center justify-center w-full py-2.5 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-sm">
-                            View Site &rarr;
-                        </a>
-                    </div>
-                </div>
-
+        <!-- News Section -->
+        <section id="news" class="container" style="padding-top: 0;">
+            <h2 class="section-title">Latest Updates & News</h2>
+            <div class="cards-container">
+                <article class="card">
+                    <h3>New Curriculum Guidelines Released</h3>
+                    <p>Updates regarding the latest educational reforms and academic structures in Nepal.</p>
+                    <a href="#" class="card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="card">
+                    <h3>Free Online Tools Portal Updated</h3>
+                    <p>Explore newly integrated coding calculators and productivity utilities for students.</p>
+                    <a href="#" class="card-link">Read More <i class="fas fa-arrow-right"></i></a>
+                </article>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-20 px-6 max-w-4xl mx-auto reveal">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-xs font-bold text-brand-600 uppercase tracking-widest mb-2">Get In Touch</h2>
-                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Let's Connect</h3>
-                <p class="text-slate-500 mt-3 text-sm sm:text-base">Have a question or want to collaborate on a project? Feel free to reach out.</p>
-            </div>
-
-            <div class="grid md:grid-cols-12 gap-8 bg-white border border-slate-200/80 rounded-2xl shadow-md p-8">
-                
-                <!-- Contact Direct Info -->
-                <div class="md:col-span-5 space-y-6 border-b md:border-b-0 md:border-r border-slate-100 pb-6 md:pb-0 md:pr-6">
-                    <h4 class="text-xl font-bold text-slate-900">Basant Thapa</h4>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        I am always open to discussing new web development ideas, learning opportunities, or technology collaborations.
-                    </p>
-
-                    <div class="space-y-4 pt-2 text-xs">
-                        <div class="flex items-center gap-3 text-slate-700 font-medium">
-                            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold">📍</span>
-                            <span>Nepal 🇳🇵</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-slate-700 font-medium">
-                            <span class="w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center font-bold">✉️</span>
-                            <span>contact@basantthapa.com.np</span>
-                        </div>
-                    </div>
-
-                    <!-- Social Icons -->
-                    <div class="pt-4">
-                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Social Profiles</div>
-                        <div class="flex flex-wrap gap-2">
-                            <a href="https://github.com/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
-                                GitHub
-                            </a>
-                            <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
-                                LinkedIn
-                            </a>
-                            <a href="https://instagram.com/your-username" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-50 hover:bg-brand-600 hover:text-white border border-slate-200 text-slate-700 transition-all text-xs font-bold">
-                                Instagram
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Contact Form Mockup -->
-                <div class="md:col-span-7">
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                        <div>
-                            <label for="contact-name" class="block text-xs font-bold text-slate-700 mb-1">Your Name</label>
-                            <input type="text" id="contact-name" required placeholder="John Doe" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all">
-                        </div>
-                        <div>
-                            <label for="contact-email" class="block text-xs font-bold text-slate-700 mb-1">Your Email</label>
-                            <input type="email" id="contact-email" required placeholder="john@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all">
-                        </div>
-                        <div>
-                            <label for="contact-message" class="block text-xs font-bold text-slate-700 mb-1">Message</label>
-                            <textarea id="contact-message" rows="4" required placeholder="Hi Basant, I'd like to talk about..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-3 rounded-xl font-bold text-xs text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-md shadow-brand-500/20">
-                            Send Message
-                        </button>
-                    </form>
-                    <div id="form-response" class="hidden mt-4 p-3 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-medium text-center border border-emerald-200">
-                        ✨ Message sent successfully! Basant will get back to you soon.
-                    </div>
-                </div>
-
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">About Us</h2>
+            <div class="about-content">
+                <p>Welcome to our educational hub dedicated to supporting students across Nepal with free, high-quality academic notes, curriculum resources, and modern web tools.</p>
+                <p>Our mission is to bridge educational gaps by providing accessible learning materials for computer engineering and secondary school programs without financial barriers.</p>
             </div>
         </section>
-
     </main>
 
-    <!-- FOOTER -->
-    <footer class="mt-20 border-t border-slate-200 bg-white py-10 px-6 text-center text-xs text-slate-500">
-        <div class="max-w-6xl mx-auto space-y-3">
-            <p class="font-semibold text-slate-700">&copy; 2026 Basant Thapa — Web Developer &amp; Student in Nepal.</p>
-            <p class="text-slate-400">Designed with modern responsive HTML5, Tailwind CSS, &amp; search engine structured data.</p>
+    <!-- Enhanced Multi-column Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            
+            <!-- Column 1: Contact Details -->
+            <div id="contact-details" class="footer-col">
+                <h3 class="footer-heading">Contact Details</h3>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <span>:9803890935 : 9813004642</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>:contact@basanthapa.com.np</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>:Mircchaiya-11, Siraha , Nepal</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="links-list">
+                    <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Home</a></li>
+                    <li><a href="#tools"><i class="fas fa-arrow-circle-right"></i> AI Tools</a></li>
+                    <li><a href="#notes"><i class="fas fa-arrow-circle-right"></i> Free Book</a></li>
+                    <li><a href="#news"><i class="fas fa-arrow-circle-right"></i> Blog</a></li>
+                    <li><a href="#about"><i class="fas fa-arrow-circle-right"></i> About</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Follow Us -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon facebook" aria-label="Facebook Page"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon twitter" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon youtube" aria-label="YouTube Channel"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 4: Brand & Bio -->
+            <div class="footer-col brand-col">
+                <div class="brand-logo">
+                    <span class="logo-yb">BT</span>
+                    <span class="logo-text">Basant Thapa</span>
+                </div>
+                <p class="brand-desc">
+                    Basant's teaching portfolio is diverse and reflects his multifaceted skills.
+                </p>
+            </div>
+
         </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <p>Copyright &copy; 2026. All rights reserved. basanthapa.com.np</p>
+        </div>
+
+        <!-- Back to Top Button -->
+        <a href="#" class="back-to-top" aria-label="Scroll back to top"><i class="fas fa-angle-up"></i></a>
     </footer>
 
-    <!-- Floating Back to Top Button -->
-    <button id="back-to-top" onclick="scrollToTop()" aria-label="Back to top" class="fixed bottom-6 right-6 w-11 h-11 rounded-full bg-slate-900 text-white shadow-lg flex items-center justify-center text-sm font-bold opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-600 hover:-translate-y-1 z-50">
-        ↑
-    </button>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- Search Script Logic -->
     <script>
-        // Dynamic Typing Animation
-        const roles = ["Web Developer", "Student in Nepal", "Problem Solver", "Tech Enthusiast"];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100;
-        const eraseSpeed = 50;
-        const delayNext = 2000;
-        const typingElement = document.getElementById('typing-text');
-
-        function typeEffect() {
-            const currentRole = roles[roleIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if(query) {
+                alert("Searching notes and tools for: " + query);
             } else {
-                typingElement.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentRole.length) {
-                isDeleting = true;
-                setTimeout(typeEffect, delayNext);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                setTimeout(typeEffect, 300);
-            } else {
-                setTimeout(typeEffect, isDeleting ? eraseSpeed : typingSpeed);
+                alert("Please enter a search term.");
             }
         }
 
-        // Skill Category Filter
-        function filterSkills(category) {
-            const cards = document.querySelectorAll('.skill-card');
-            const tabs = document.querySelectorAll('.skill-tab');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('bg-brand-600', 'text-white', 'shadow-xs');
-                tab.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-            });
-
-            event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
-            event.target.classList.add('bg-brand-600', 'text-white', 'shadow-xs');
-
-            cards.forEach(card => {
-                if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Scroll Progress & Section Reveals & Back-to-Top Button
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scroll-progress').style.width = scrolled + '%';
-
-            // Back to top button visibility
-            const backToTopBtn = document.getElementById('back-to-top');
-            if (winScroll > 400) {
-                backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
-            } else {
-                backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+        // Allow pressing Enter in the search input
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                performSearch();
             }
-
-            // Reveal sections
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
-                }
-            });
         });
-
-        // Scroll to Top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Contact Form Mockup Submission
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const form = document.getElementById('contact-form');
-            const response = document.getElementById('form-response');
-            form.reset();
-            response.classList.remove('hidden');
-            setTimeout(() => {
-                response.classList.add('hidden');
-            }, 5000);
-        }
-
-        // Initialize on window load
-        window.onload = function() {
-            typeEffect();
-            // Trigger initial scroll reveal check
-            window.dispatchEvent(new Event('scroll'));
-        };
     </script>
 </body>
 </html>
