@@ -61,11 +61,9 @@
         body {
             background-color: #f3f4f6;
             color: #333;
-            /* Added padding-top to prevent hero content from being hidden behind fixed header */
-            padding-top: 70px;
         }
 
-        /* Fixed Navbar Styling */
+        /* Normal Scrolling Navbar Styling (Not Fixed) */
         header {
             background-color: #2563eb;
             color: white;
@@ -73,13 +71,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            /* Sticky changed to Fixed for guaranteed position locking while scrolling */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 10000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .logo {
@@ -205,8 +197,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 20px;
-            /* Smooth scroll margin target for fixed navbar offset */
-            scroll-margin-top: 80px;
         }
 
         .section-title {
@@ -273,7 +263,6 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
-            scroll-margin-top: 80px;
         }
 
         .about-content {
@@ -295,7 +284,6 @@
             position: relative;
             padding-top: 40px;
             margin-top: 4rem;
-            scroll-margin-top: 80px;
         }
 
         .footer-container {
@@ -460,9 +448,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding-top: 110px;
-            }
             header {
                 flex-direction: column;
                 gap: 0.5rem;
@@ -480,7 +465,7 @@
 </head>
 <body>
 
-    <!-- Fixed Header / Navbar -->
+    <!-- Header / Navbar (Scrolls naturally with page) -->
     <header>
         <a href="#" class="logo" aria-label="Basant Thapa Home">
             <i class="fas fa-user-circle"></i> BT
