@@ -45,19 +45,6 @@
       }
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Basant Thapa Educational Portal",
-      "url": "https://basanthapa.com.np/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://basanthapa.com.np/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
 
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -74,9 +61,11 @@
         body {
             background-color: #f3f4f6;
             color: #333;
+            /* Added padding-top to prevent hero content from being hidden behind fixed header */
+            padding-top: 70px;
         }
 
-        /* Navbar Styling */
+        /* Fixed Navbar Styling */
         header {
             background-color: #2563eb;
             color: white;
@@ -84,10 +73,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            position: sticky;
+            /* Sticky changed to Fixed for guaranteed position locking while scrolling */
+            position: fixed;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
         }
 
         .logo {
@@ -95,6 +87,9 @@
             font-weight: bold;
             color: #ffffff;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav ul {
@@ -210,6 +205,8 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 20px;
+            /* Smooth scroll margin target for fixed navbar offset */
+            scroll-margin-top: 80px;
         }
 
         .section-title {
@@ -276,6 +273,7 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            scroll-margin-top: 80px;
         }
 
         .about-content {
@@ -297,6 +295,7 @@
             position: relative;
             padding-top: 40px;
             margin-top: 4rem;
+            scroll-margin-top: 80px;
         }
 
         .footer-container {
@@ -461,8 +460,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding-top: 110px;
+            }
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.8rem;
+            }
             nav ul {
-                display: none;
+                gap: 0.8rem;
+                font-size: 0.9rem;
             }
             .hero-content h1 {
                 font-size: 2.2rem;
@@ -472,17 +480,19 @@
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Fixed Header / Navbar -->
     <header>
-        <a href="#" class="logo" aria-label="Basant Thapa Home">BT</a>
+        <a href="#" class="logo" aria-label="Basant Thapa Home">
+            <i class="fas fa-user-circle"></i> BT
+        </a>
         <nav aria-label="Main Navigation">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#notes">Notes</a></li>
-                <li><a href="#tools">Online Tools</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact-details">Contact</a></li>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#notes"><i class="fas fa-book"></i> Notes</a></li>
+                <li><a href="#tools"><i class="fas fa-tools"></i> Online Tools</a></li>
+                <li><a href="#news"><i class="fas fa-newspaper"></i> News</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#contact-details"><i class="fas fa-envelope"></i> Contact</a></li>
                 <li>
                     <div class="nav-search-container">
                         <input type="text" id="searchInput" class="nav-search-input" placeholder="Search notes..." aria-label="Search study notes">
@@ -615,7 +625,7 @@
                 <h3 class="footer-heading">Quick Links</h3>
                 <ul class="links-list">
                     <li><a href="#"><i class="fas fa-arrow-circle-right"></i> Home</a></li>
-                    <li><a href="#tools"><i class="fas fa-arrow-circle-right"></i> AI Tools</a></li>
+                    <li><a href="#tools"><i class="fas fa-arrow-circle-right"></i> Online Tools</a></li>
                     <li><a href="#notes"><i class="fas fa-arrow-circle-right"></i> Free Book</a></li>
                     <li><a href="#news"><i class="fas fa-arrow-circle-right"></i> Blog</a></li>
                     <li><a href="#about"><i class="fas fa-arrow-circle-right"></i> About</a></li>
