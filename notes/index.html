@@ -1,1 +1,184 @@
-Kjeijdlfkd
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes Portal</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      /* Soft, modern background gradient */
+      background: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .portal-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .portal-header p {
+      color: #64748b;
+      font-size: 1.05rem;
+    }
+
+    /* Vertical Column Layout with smooth spacing */
+    .cards-column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .note-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 20px; /* Much softer, rounded corners */
+      padding: 26px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      /* Smooth, luxurious shadow */
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 
+                  0 2px 6px -1px rgba(15, 23, 42, 0.02);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .note-card:hover {
+      transform: translateY(-4px);
+      background: #ffffff;
+      border-color: #cbd5e1;
+      box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.08), 
+                  0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    }
+
+    /* Active/Featured card styling */
+    .note-card.featured {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
+      border: 1.5px solid #3b82f6;
+      box-shadow: 0 8px 25px -4px rgba(59, 130, 246, 0.12);
+    }
+
+    .card-content h3 {
+      font-size: 1.15rem;
+      color: #0f172a;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .card-content p {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Minimalist smooth arrow button */
+    .arrow-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-left: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .note-card:hover .arrow-icon {
+      background: #2563eb;
+      color: #ffffff;
+      transform: translateX(4px);
+    }
+
+    .note-card.featured .arrow-icon {
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    .note-card.featured:hover .arrow-icon {
+      background: #2563eb;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="portal-header">
+      <h1>Study Notes</h1>
+      <p>Select your class level to access notes[cite: 1].</p>
+    </div>
+
+    <!-- Vertical Column of Modern Cards -->
+    <div class="cards-column">
+      
+      <!-- Class 9 -->
+      <a href="#" class="note-card">
+        <div class="card-content">
+          <h3>Class Nine Study Notes</h3>
+          <p>Theory and practical guidelines for Grade 9[cite: 1].</p>
+        </div>
+        <div class="arrow-icon">&rarr;</div>
+      </a>
+
+      <!-- Class 10 (Featured/Selected) -->
+      <a href="#" class="note-card featured">
+        <div class="card-content">
+          <h3>Class Ten Study Notes</h3>
+          <p>Curriculum notes & revision guides for exams[cite: 1].</p>
+        </div>
+        <div class="arrow-icon">&rarr;</div>
+      </a>
+
+      <!-- Class 11 -->
+      <a href="#" class="note-card">
+        <div class="card-content">
+          <h3>Class Eleven Study Notes</h3>
+          <p>Advanced concepts and core modules[cite: 1].</p>
+        </div>
+        <div class="arrow-icon">&rarr;</div>
+      </a>
+
+      <!-- Class 12 -->
+      <a href="#" class="note-card">
+        <div class="card-content">
+          <h3>Class Twelve Study Notes</h3>
+          <p>Analytical frameworks and final revision[cite: 1].</p>
+        </div>
+        <div class="arrow-icon">&rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>
