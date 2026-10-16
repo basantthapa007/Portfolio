@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEB GPA Calculator Class 11 & 12 Science Stream (Comp/Math & Bio/Math)</title>
+    
+    <!-- Comprehensive SEO Meta Tags -->
+    <meta name="description" content="Calculate your NEB Class 11 and Class 12 Science stream GPA accurately. Supports both Comp/Math and Bio/Math streams based on official CDC credit hours and NEB 35% theory pass rules.">
+    <meta name="keywords" content="NEB GPA Calculator Science, Class 11 Science GPA Calculator, Class 12 Science GPA Calculator, NEB Class 11 12 GPA Calculator Nepal, Comp Math GPA Calculator, Bio Math GPA Calculator, NEB Grading System">
+    <meta name="author" content="Basant Thapa">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://basantthapa.com.np/">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NEB Science GPA Calculator — Class 11 & 12">
+    <meta property="og:description" content="Fast, free, and precise NEB GPA calculator for Class 11 & 12 Science students in Nepal. Calculate GPA for Comp/Math and Bio/Math groups instantly.">
+    <meta property="og:url" content="https://basantthapa.com.np/">
+    <meta property="og:site_name" content="NEB GPA Calculator">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NEB Class 11 & 12 Science GPA Calculator">
+    <meta name="twitter:description" content="Calculate your NEB Science stream GPA easily with official credit hours for Physics, Chemistry, Maths, Biology, and Computer.">
+
+    <!-- Schema.org Structured Data (JSON-LD WebApplication) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "NEB Science GPA Calculator Class 11 & 12",
+      "url": "https://basantthapa.com.np/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "All",
+      "description": "An accurate NEB GPA calculator for Class 11 and 12 Science stream students in Nepal, supporting Comp/Math and Bio/Math subject combinations according to CDC guidelines.",
+      "author": {
+        "@type": "Person",
+        "name": "Basant Thapa"
+      }
+    }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .font-handwriting {
+            font-family: 'Caveat', cursive, sans-serif;
+        }
+        .font-sans {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col items-center justify-start pt-12 sm:pt-16 px-4 pb-20">
+
+    <main class="w-full max-w-4xl space-y-8 text-center">
+        
+        <!-- Page Header -->
+        <header class="space-y-3">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 italic uppercase font-handwriting">
+                NEB GPA CALCULATOR
+            </h1>
+            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">
+                Choose Optional Subjects
+            </h2>
+            <p class="text-sm text-slate-600 max-w-xl mx-auto">
+                Official National Examination Board (NEB) Class 11 & 12 Science Stream GPA Calculator
+            </p>
+        </header>
+
+        <!-- Stream Selection Buttons -->
+        <nav aria-label="Optional Subject Selection" class="flex flex-col sm:flex-row justify-center items-center gap-6 pt-2 max-w-3xl mx-auto w-full">
+            <button type="button" onclick="loadCalculator('comp')" id="btnComp" class="w-full sm:w-1/2 py-4 px-6 bg-white hover:bg-slate-100 border border-slate-200 rounded-2xl shadow-sm hover:shadow transition-all duration-200 text-center font-bold text-slate-800 cursor-pointer">
+                Comp/Math
+            </button>
+
+            <button type="button" onclick="loadCalculator('bio')" id="btnBio" class="w-full sm:w-1/2 py-4 px-6 bg-white hover:bg-slate-100 border border-slate-200 rounded-2xl shadow-sm hover:shadow transition-all duration-200 text-center font-bold text-slate-800 cursor-pointer">
+                Bio/Math
+            </button>
+        </nav>
+
+        <!-- Dynamic Form Container -->
+        <section id="calculatorSection" class="hidden pt-6 max-w-3xl mx-auto w-full text-left bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-sm">
+            <h3 id="formHeading" class="text-xl sm:text-2xl font-bold text-slate-900 mb-6 text-center border-b pb-4">
+                Select Your Expected Grades
+            </h3>
+
+            <form id="gpaForm" class="grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
+                <!-- Dynamic subject dropdowns render here -->
+            </form>
+
+            <div class="mt-8 text-center">
+                <button type="button" onclick="calculateGPA()" class="px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl shadow transition duration-200 cursor-pointer">
+                    Calculate GPA
+                </button>
+            </div>
+
+            <!-- Result Display -->
+            <div id="resultBox" class="hidden mt-6 p-4 rounded-xl text-center font-bold text-lg"></div>
+        </section>
+
+        <!-- On-Page SEO Content Section -->
+        <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 text-left space-y-4 max-w-3xl mx-auto text-sm sm:text-base text-slate-700">
+            <h3 class="text-lg font-bold text-slate-900 border-b pb-2">How NEB Science Stream GPA Calculation Works</h3>
+            <p>
+                In the NEB Class 11 and 12 Science curriculum established by the Curriculum Development Centre (CDC) Nepal, total credit hours are distributed into theory (75%) and practical (25%) components:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-slate-600">
+                <li><strong>Physics, Chemistry, Maths, Biology, Computer Science:</strong> 5 Credit Hours each (3.75 Theory / 1.25 Practical)</li>
+                <li><strong>English:</strong> 4 Credit Hours (3.0 Theory / 1.0 Practical)</li>
+                <li><strong>Nepali:</strong> 3 Credit Hours (2.25 Theory / 0.75 Practical)</li>
+            </ul>
+            <p class="text-xs text-slate-500 pt-2 border-t">
+                <strong>NEB Passing Rule:</strong> Students must score a minimum grade of <strong>D (35% or 1.6 GP)</strong> in theory examinations. Scoring below 35% in any subject's theory paper results in a <strong>Non-Graded (NG)</strong> status.
+            </p>
+        </article>
+
+    </main>
+
+    <footer class="mt-12 text-center text-xs text-slate-500">
+        <p>&copy; 2026 NEB GPA Calculator — Science Stream (Class 11 & 12 Nepal)</p>
+    </footer>
+
+    <script>
+        const gradeOptions = [
+            { label: "Select", value: "" },
+            { label: "4.0 or A+", value: 4.0 },
+            { label: "3.6 or A", value: 3.6 },
+            { label: "3.2 or B+", value: 3.2 },
+            { label: "2.8 or B", value: 2.8 },
+            { label: "2.4 or C+", value: 2.4 },
+            { label: "2.0 or C", value: 2.0 },
+            { label: "1.6 or D", value: 1.6 },
+            { label: "0.8 or E", value: 0.8 }
+        ];
+
+        let currentSubjects = [];
+
+        function loadCalculator(stream) {
+            const container = document.getElementById("calculatorSection");
+            const form = document.getElementById("gpaForm");
+            const heading = document.getElementById("formHeading");
+            const resultBox = document.getElementById("resultBox");
+            
+            resultBox.classList.add("hidden");
+
+            // Subject definitions with CDC Credit Hours (75% Theory / 25% Practical)
+            if (stream === 'comp') {
+                heading.innerText = "Comp/Math Stream Subject Grades";
+                currentSubjects = [
+                    { name: "Nepali", thCredit: 2.25, prCredit: 0.75 },
+                    { name: "English", thCredit: 3.0, prCredit: 1.0 },
+                    { name: "Physics", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Chemistry", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Maths", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Computer", thCredit: 3.75, prCredit: 1.25 }
+                ];
+            } else {
+                heading.innerText = "Bio/Math Stream Subject Grades";
+                currentSubjects = [
+                    { name: "Nepali", thCredit: 2.25, prCredit: 0.75 },
+                    { name: "English", thCredit: 3.0, prCredit: 1.0 },
+                    { name: "Physics", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Chemistry", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Maths", thCredit: 3.75, prCredit: 1.25 },
+                    { name: "Biology", thCredit: 3.75, prCredit: 1.25 }
+                ];
+            }
+
+            form.innerHTML = currentSubjects.map((sub, index) => `
+                <div class="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="text-xl font-bold text-center text-slate-800">${sub.name}</h4>
+                    <div class="flex items-center justify-center gap-2 text-sm font-semibold">
+                        <span>Practical:</span>
+                        <select id="pr_${index}" class="border border-slate-300 rounded px-2 py-1 text-slate-700 focus:outline-none focus:border-slate-500 bg-white">
+                            ${gradeOptions.map(g => `<option value="${g.value}">${g.label}</option>`).join('')}
+                        </select>
+                        <span>Theory:</span>
+                        <select id="th_${index}" class="border border-slate-300 rounded px-2 py-1 text-slate-700 focus:outline-none focus:border-slate-500 bg-white">
+                            ${gradeOptions.map(g => `<option value="${g.value}">${g.label}</option>`).join('')}
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+
+            container.classList.remove("hidden");
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function calculateGPA() {
+            let totalQualityPoints = 0;
+            let totalCreditHours = 0;
+            let hasIncomplete = false;
+            let hasNG = false;
+
+            currentSubjects.forEach((sub, index) => {
+                const prVal = document.getElementById(`pr_${index}`).value;
+                const thVal = document.getElementById(`th_${index}`).value;
+
+                if (prVal === "" || thVal === "") {
+                    hasIncomplete = true;
+                    return;
+                }
+
+                const prGrade = parseFloat(prVal);
+                const thGrade = parseFloat(thVal);
+
+                // NEB Theory NG check (< 35% / 1.6 D grade)
+                if (thGrade < 1.6) {
+                    hasNG = true;
+                }
+
+                totalQualityPoints += (thGrade * sub.thCredit) + (prGrade * sub.prCredit);
+                totalCreditHours += (sub.thCredit + sub.prCredit);
+            });
+
+            const resultBox = document.getElementById("resultBox");
+            resultBox.classList.remove("hidden");
+
+            if (hasIncomplete) {
+                resultBox.className = "mt-6 p-4 rounded-xl text-center font-bold text-base bg-amber-100 text-amber-800 border border-amber-300";
+                resultBox.innerText = "Please select grades for both Theory and Practical in all subjects.";
+                return;
+            }
+
+            if (hasNG) {
+                resultBox.className = "mt-6 p-4 rounded-xl text-center font-bold text-base bg-red-100 text-red-800 border border-red-300";
+                resultBox.innerText = "Result: Non-Graded (NG) — Theory grade is below 35% (D grade) in one or more subjects.";
+                return;
+            }
+
+            const calculatedGPA = (totalQualityPoints / totalCreditHours).toFixed(2);
+            resultBox.className = "mt-6 p-4 rounded-xl text-center font-bold text-lg bg-emerald-100 text-emerald-800 border border-emerald-300";
+            resultBox.innerText = `Your Final NEB GPA: ${calculatedGPA} / 4.0`;
+        }
+    </script>
+
+</body>
+</html>
