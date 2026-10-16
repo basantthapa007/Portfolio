@@ -3,57 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEB GPA Calculator — Class 11 & 12</title>
+    <title>NEB GPA Calculator Class 11 & 12 | Calculate Grade Point Average (Nepal)</title>
+    <meta name="description" content="Free online NEB GPA calculator for Class 11 and Class 12 students in Nepal. Easily calculate your GPA for Science and Management streams based on credit hours and grade points.">
+    <meta name="keywords" content="NEB GPA Calculator, Class 11 GPA calculator, Class 12 GPA calculator Nepal, National Examination Board GPA, Science stream GPA calculator, Management stream GPA calculator">
+    <meta name="author" content="Basant Thapa">
+    <link rel="canonical" href="https://basantthapa.com.np/">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="NEB GPA Calculator — Class 11 & 12">
+    <meta property="og:description" content="Calculate your Grade Point Average (GPA) for NEB Class 11 and 12 instantly. Select your stream and convert percentages to grade points easily.">
+    <meta property="og:type" content="website">
+
     <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen py-10 px-4">
 
-    <div class="max-w-2xl mx-auto space-y-8">
+    <main class="max-w-2xl mx-auto space-y-8">
         
         <!-- Header -->
         <header class="text-center space-y-2">
             <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
                 NEB GPA CALCULATOR
             </h1>
-            <p class="text-slate-600 font-medium">Choose Stream</p>
+            <p class="text-slate-600 font-medium">Choose Your Stream to Calculate Class 11 & 12 GPA</p>
         </header>
 
-        <!-- Stream Selection Buttons -->
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <button onclick="selectStream('Science')" class="px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
+        <!-- Stream Selection Redirect Links -->
+        <nav aria-label="Stream Selection" class="flex flex-col sm:flex-row justify-center gap-4">
+            <!-- Replace 'science-page.html' with your desired redirect URL -->
+            <a href="science-page.html" class="text-center px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
                 Science
-            </button>
-            <button onclick="selectStream('Management')" class="px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
+            </a>
+            <!-- Replace 'management-page.html' with your desired redirect URL -->
+            <a href="management-page.html" class="text-center px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
                 Management
-            </button>
-        </div>
+            </a>
+        </nav>
 
         <!-- How GPA Calculation Works -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+        <article class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
             <h2 class="text-xl font-bold flex items-center gap-2 text-slate-900 border-b pb-3">
-                <span class="text-xl">⌄</span> Calculation process:
+                <span class="text-xl" aria-hidden="true">⌄</span> How NEB GPA Calculation Works:
             </h2>
             
-            <div class="space-y-2 text-sm sm:text-base text-slate-700">
-                <p class="font-medium">To calculate your NEB GPA, you must first convert your subject percentages into Grade Points (on a 4.0 scale) and identify the Credit Hours assigned to each subject. For every subject, multiply its Grade Point by its Credit Hours to find that subject's total "quality points." Finally, add all these quality points together and divide that total sum by your total credit hours (which usually equals 27) to get your final GPA.
-<p/>
-<p>Keep in mind that NEB calculates theory and practical grades separately, and you must score at least 35% in theory to pass. If you score below 35% in the theory section of any subject, you will receive an NG (Not Graded), which temporarily blocks your final GPA calculation until you pass the grade increment makeup exam.:</p>
-                                          </div>
-        </div>
+            <div class="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+                <p>
+                    To calculate your National Examination Board (NEB) GPA, convert your subject percentages into Grade Points (on a 4.0 scale) and identify the Credit Hours assigned to each subject. Multiply each subject's Grade Point by its Credit Hours to get total quality points, then divide the sum by your total credit hours (typically 27).
+                </p>
+                <p>
+                    Note that NEB calculates theory and practical grades separately. You must score at least 35% in theory to pass. Scoring below 35% in any theory section results in an <strong>NG (Not Graded)</strong>, temporarily blocking your final GPA until you clear the grade increment makeup exam.
+                </p>
+            </div>
+        </article>
 
         <!-- Grading Scale Table -->
-        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-            <div class="p-4 border-b bg-slate-50 font-bold text-slate-900">
-                NEB Grading Scale Reference
-            </div>
+        <section class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <header class="p-4 border-b bg-slate-50 font-bold text-slate-900">
+                NEB Grading Scale Reference Table
+            </header>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
                         <tr class="bg-slate-100/70 border-b text-slate-700">
                             <th class="p-3 font-semibold">Grade</th>
-                            <th class="p-3 font-semibold">Scale</th>
-                            <th class="p-3 font-semibold">Scale 2</th>
+                            <th class="p-3 font-semibold">Percentage Scale</th>
+                            <th class="p-3 font-semibold">Grade Point (Scale)</th>
                             <th class="p-3 font-semibold">Grade Description</th>
                         </tr>
                     </thead>
@@ -70,23 +85,16 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </section>
 
         <!-- Footer Links -->
         <footer class="text-center text-sm text-slate-500 space-x-2">
             <a href="#" class="hover:underline text-blue-600">Free Online Scientific Calculator</a>
             <span>·</span>
-            <a href="#" class="hover:underline text-blue-600">Scientific calculator by WideMath</a>
+            <a href="#" class="hover:underline text-blue-600">Scientific Calculator Resources</a>
         </footer>
 
-    </div>
-
-    <!-- JavaScript interaction handler -->
-    <script>
-        function selectStream(streamName) {
-            alert(`You selected the ${streamName} stream. You can now load subject input fields for this stream.`);
-        }
-    </script>
+    </main>
 
 </body>
 </html>
