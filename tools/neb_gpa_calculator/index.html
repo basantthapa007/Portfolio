@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEB GPA Calculator — Class 11 & 12</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen py-10 px-4">
+
+    <div class="max-w-2xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <header class="text-center space-y-2">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
+                NEB GPA CALCULATOR
+            </h1>
+            <p class="text-slate-600 font-medium">Choose Stream</p>
+        </header>
+
+        <!-- Stream Selection Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <button onclick="selectStream('Science')" class="px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
+                Science
+            </button>
+            <button onclick="selectStream('Management')" class="px-8 py-3 bg-white border border-slate-300 hover:border-slate-400 font-semibold rounded-lg shadow-sm hover:shadow transition text-slate-700">
+                Management
+            </button>
+        </div>
+
+        <!-- How GPA Calculation Works -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
+            <h2 class="text-xl font-bold flex items-center gap-2 text-slate-900 border-b pb-3">
+                <span class="text-xl">⌄</span> Calculation process:
+            </h2>
+            
+            <div class="space-y-2 text-sm sm:text-base text-slate-700">
+                <p class="font-medium">To calculate your NEB GPA, you must first convert your subject percentages into Grade Points (on a 4.0 scale) and identify the Credit Hours assigned to each subject. For every subject, multiply its Grade Point by its Credit Hours to find that subject's total "quality points." Finally, add all these quality points together and divide that total sum by your total credit hours (which usually equals 27) to get your final GPA.
+<p/>
+<p>Keep in mind that NEB calculates theory and practical grades separately, and you must score at least 35% in theory to pass. If you score below 35% in the theory section of any subject, you will receive an NG (Not Graded), which temporarily blocks your final GPA calculation until you pass the grade increment makeup exam.:</p>
+                                          </div>
+        </div>
+
+        <!-- Grading Scale Table -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="p-4 border-b bg-slate-50 font-bold text-slate-900">
+                NEB Grading Scale Reference
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-100/70 border-b text-slate-700">
+                            <th class="p-3 font-semibold">Grade</th>
+                            <th class="p-3 font-semibold">Scale</th>
+                            <th class="p-3 font-semibold">Scale 2</th>
+                            <th class="p-3 font-semibold">Grade Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-600">
+                        <tr><td class="p-3 font-medium text-slate-900">A+</td><td class="p-3">90.00 - 100.00</td><td class="p-3">4.00</td><td class="p-3">Outstanding</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">A</td><td class="p-3">80.00 - 89.00</td><td class="p-3">3.60</td><td class="p-3">Excellent</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">B+</td><td class="p-3">70.00 - 79.00</td><td class="p-3">3.20</td><td class="p-3">Very Good</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">B</td><td class="p-3">60.00 - 69.00</td><td class="p-3">2.80</td><td class="p-3">Good</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">C+</td><td class="p-3">50.00 - 59.00</td><td class="p-3">2.40</td><td class="p-3">Above Average</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">C</td><td class="p-3">40.00 - 49.00</td><td class="p-3">2.00</td><td class="p-3">Average</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">D+</td><td class="p-3">30.00 - 39.00</td><td class="p-3">1.80</td><td class="p-3">Below Average</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">D</td><td class="p-3">20.00 - 29.00</td><td class="p-3">1.60</td><td class="p-3">Above Insufficient</td></tr>
+                        <tr><td class="p-3 font-medium text-slate-900">E</td><td class="p-3">0.00 - 19.00</td><td class="p-3">0.80</td><td class="p-3">Insufficient</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <footer class="text-center text-sm text-slate-500 space-x-2">
+            <a href="#" class="hover:underline text-blue-600">Free Online Scientific Calculator</a>
+            <span>·</span>
+            <a href="#" class="hover:underline text-blue-600">Scientific calculator by WideMath</a>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript interaction handler -->
+    <script>
+        function selectStream(streamName) {
+            alert(`You selected the ${streamName} stream. You can now load subject input fields for this stream.`);
+        }
+    </script>
+
+</body>
+</html>
