@@ -1,1 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Xiaomi HyperOS Web Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
 
+  <!-- Physical Phone Case -->
+  <div class="phone-case">
+    <!-- Physical Side Buttons -->
+    <div class="volume-btn vol-up"></div>
+    <div class="volume-btn vol-down"></div>
+    <div class="power-btn" id="hw-power-btn" title="Power / Lock Button"></div>
+
+    <!-- Screen Bezel -->
+    <div class="phone-screen" id="phone-screen">
+      
+      <!-- Top Punch-Hole Camera -->
+      <div class="punch-hole" id="punch-hole"></div>
+
+      <!-- Power Off Overlay -->
+      <div class="off-screen" id="off-screen"></div>
+
+      <!-- HyperOS Boot Screen -->
+      <div class="boot-screen hidden" id="boot-screen">
+        <div class="boot-content">
+          <div class="mi-logo">mi</div>
+          <div class="powered-by">Powered by <span>HyperOS</span></div>
+        </div>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar" id="status-bar">
+        <div class="status-left">
+          <span id="status-time">12:00</span>
+        </div>
+        <div class="status-right">
+          <i class="fa-solid fa-signal"></i>
+          <i class="fa-solid fa-wifi"></i>
+          <div class="battery-icon">
+            <div class="battery-level" id="battery-level" style="width: 85%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HyperOS Control Center (Swipeable / Clickable Pull Down) -->
+      <div class="control-center hidden" id="control-center">
+        <div class="cc-header">
+          <span>Control Center</span>
+          <i class="fa-solid fa-chevron-up" id="close-cc-btn"></i>
+        </div>
+        <div class="cc-grid">
+          <div class="cc-tile active" id="toggle-wifi">
+            <i class="fa-solid fa-wifi"></i>
+            <span>Wi-Fi</span>
+          </div>
+          <div class="cc-tile active" id="toggle-bt">
+            <i class="fa-solid fa-bluetooth-b"></i>
+            <span>Bluetooth</span>
+          </div>
+          <div class="cc-tile" id="toggle-flashlight">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Torch</span>
+          </div>
+          <div class="cc-tile active" id="toggle-mute">
+            <i class="fa-solid fa-bell"></i>
+            <span>Sound</span>
+          </div>
+        </div>
+        <div class="cc-slider-box">
+          <i class="fa-solid fa-sun"></i>
+          <input type="range" id="brightness-slider" min="30" max="100" value="100" />
+        </div>
+      </div>
+
+      <!-- Lock Screen -->
+      <div class="lock-screen hidden" id="lock-screen">
+        <div class="lock-clock-container">
+          <div class="lock-time" id="lock-time">12:00</div>
+          <div class="lock-date" id="lock-date">Wednesday, October 18</div>
+        </div>
+        <div class="lock-hint">Swipe up or click to unlock</div>
+        <div class="lock-bottom-actions">
+          <div class="lock-icon-btn" id="lock-torch-btn"><i class="fa-solid fa-flashlight"></i></div>
+          <div class="lock-icon-btn" id="lock-cam-btn"><i class="fa-solid fa-camera"></i></div>
+        </div>
+      </div>
+
+      <!-- Home Screen -->
+      <div class="home-screen hidden" id="home-screen">
+        <!-- HyperOS Widgets Bar -->
+        <div class="hyper-widget">
+          <div class="hw-date" id="hw-date">Oct 18 | Sun</div>
+          <div class="hw-temp"><i class="fa-solid fa-sun"></i> 24°C Sunny</div>
+        </div>
+
+        <!-- App Icons Grid -->
+        <div class="apps-grid">
+          <div class="app-item" data-app="camera">
+            <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
+            <span class="app-name">Camera</span>
+          </div>
+          <div class="app-item" data-app="gallery">
+            <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
+            <span class="app-name">Gallery</span>
+          </div>
+          <div class="app-item" data-app="calculator">
+            <div class="app-icon icon-calculator"><i class="fa-solid fa-calculator"></i></div>
+            <span class="app-name">Calculator</span>
+          </div>
+          <div class="app-item" data-app="notes">
+            <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
+            <span class="app-name">Notes</span>
+          </div>
+          <div class="app-item" data-app="game">
+            <div class="app-icon icon-game"><i class="fa-solid fa-gamepad"></i></div>
+            <span class="app-name">Game Turbo</span>
+          </div>
+          <div class="app-item" data-app="settings">
+            <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
+            <span class="app-name">Settings</span>
+          </div>
+        </div>
+
+        <!-- Bottom HyperOS Dock -->
+        <div class="dock">
+          <div class="app-item" data-app="camera">
+            <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
+          </div>
+          <div class="app-item" data-app="gallery">
+            <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
+          </div>
+          <div class="app-item" data-app="notes">
+            <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
+          </div>
+          <div class="app-item" data-app="settings">
+            <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APP CONTAINERS -->
+      <div class="app-viewport hidden" id="app-viewport">
+        
+        <!-- Camera App -->
+        <div class="app-window hidden" id="app-camera">
+          <video id="webcam-feed" autoplay playsinline></video>
+          <div class="camera-controls">
+            <button class="shutter-btn" id="shutter-btn"></button>
+          </div>
+        </div>
+
+        <!-- Gallery App -->
+        <div class="app-window hidden" id="app-gallery">
+          <div class="app-header">
+            <h3>Gallery</h3>
+          </div>
+          <div class="gallery-grid" id="gallery-grid">
+            <p class="empty-msg">No photos captured yet.</p>
+          </div>
+        </div>
+
+        <!-- Calculator App -->
+        <div class="app-window hidden" id="app-calculator">
+          <div class="calc-display" id="calc-display">0</div>
+          <div class="calc-keypad">
+            <button class="calc-btn op" onclick="calcInput('C')">C</button>
+            <button class="calc-btn op" onclick="calcInput('()')">( )</button>
+            <button class="calc-btn op" onclick="calcInput('%')">%</button>
+            <button class="calc-btn op-main" onclick="calcInput('/')">÷</button>
+
+            <button class="calc-btn" onclick="calcInput('7')">7</button>
+            <button class="calc-btn" onclick="calcInput('8')">8</button>
+            <button class="calc-btn" onclick="calcInput('9')">9</button>
+            <button class="calc-btn op-main" onclick="calcInput('*')">×</button>
+
+            <button class="calc-btn" onclick="calcInput('4')">4</button>
+            <button class="calc-btn" onclick="calcInput('5')">5</button>
+            <button class="calc-btn" onclick="calcInput('6')">6</button>
+            <button class="calc-btn op-main" onclick="calcInput('-')">-</button>
+
+            <button class="calc-btn" onclick="calcInput('1')">1</button>
+            <button class="calc-btn" onclick="calcInput('2')">2</button>
+            <button class="calc-btn" onclick="calcInput('3')">3</button>
+            <button class="calc-btn op-main" onclick="calcInput('+')">+</button>
+
+            <button class="calc-btn" onclick="calcInput('0')">0</button>
+            <button class="calc-btn" onclick="calcInput('.')">.</button>
+            <button class="calc-btn op-main double" onclick="calcInput('=')">=</button>
+          </div>
+        </div>
+
+        <!-- Notes App -->
+        <div class="app-window hidden" id="app-notes">
+          <div class="app-header">
+            <h3>HyperOS Notes</h3>
+            <button class="header-btn" id="save-note-btn">Save</button>
+          </div>
+          <div class="notes-body">
+            <input type="text" id="note-title" placeholder="Title..." />
+            <textarea id="note-content" placeholder="Write your thoughts here..."></textarea>
+          </div>
+        </div>
+
+        <!-- Game Turbo App (Snake) -->
+        <div class="app-window hidden" id="app-game">
+          <div class="app-header">
+            <h3>Snake Arcade</h3>
+            <span id="snake-score">Score: 0</span>
+          </div>
+          <div class="game-container">
+            <canvas id="snake-canvas" width="280" height="280"></canvas>
+            <div class="d-pad">
+              <button onclick="changeSnakeDir('UP')"><i class="fa-solid fa-arrow-up"></i></button>
+              <div class="d-pad-row">
+                <button onclick="changeSnakeDir('LEFT')"><i class="fa-solid fa-arrow-left"></i></button>
+                <button onclick="changeSnakeDir('RIGHT')"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+              <button onclick="changeSnakeDir('DOWN')"><i class="fa-solid fa-arrow-down"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings App -->
+        <div class="app-window hidden" id="app-settings">
+          <div class="app-header">
+            <h3>Settings</h3>
+          </div>
+          <div class="settings-list">
+            <div class="setting-item">
+              <span>Device Info</span>
+              <small>Xiaomi 14 Pro (HyperOS 1.0)</small>
+            </div>
+            <div class="setting-item">
+              <span>Wallpaper Style</span>
+              <select id="wallpaper-select">
+                <option value="linear-gradient(135deg, #0f2027, #203a43, #2c5364)">HyperOS Gradient</option>
+                <option value="linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)">Sunset Flame</option>
+                <option value="linear-gradient(135deg, #11998e, #38ef7d)">Emerald City</option>
+                <option value="#000000">Minimal Dark</option>
+              </select>
+            </div>
+            <div class="setting-item">
+              <span>Sound Effects</span>
+              <input type="checkbox" id="sound-toggle" checked />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Navigation Gestures Bar (Home / Back) -->
+      <div class="nav-bar" id="nav-bar">
+        <div class="nav-indicator" id="nav-home-btn"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
