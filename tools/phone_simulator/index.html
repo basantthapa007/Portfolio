@@ -2,265 +2,764 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Xiaomi HyperOS Web Simulator</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Outer Container for Scaling */
+    .phone-wrapper {
+      transform: scale(0.9); /* Ensures full visibility on smaller screens */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Physical Phone Case */
+    .phone-case {
+      position: relative;
+      width: 360px;
+      height: 720px;
+      background-color: #1c1c1e;
+      border-radius: 48px;
+      padding: 12px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), inset 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hardware Buttons */
+    .volume-btn, .power-btn {
+      position: absolute;
+      background: #2c2c2e;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .vol-up { left: -6px; top: 120px; width: 6px; height: 50px; }
+    .vol-down { left: -6px; top: 180px; width: 6px; height: 50px; }
+    .power-btn { right: -6px; top: 150px; width: 6px; height: 60px; background: #ff6900; }
+
+    /* Display Area */
+    .phone-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      border-radius: 38px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Punch Hole Camera */
+    .punch-hole {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      background-color: #000;
+      border-radius: 50%;
+      z-index: 1000;
+    }
+
+    /* Off Screen Layer */
+    .off-screen {
+      position: absolute;
+      inset: 0;
+      background-color: #000;
+      z-index: 900;
+      cursor: pointer;
+    }
+
+    /* Status Bar */
+    .status-bar {
+      height: 32px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 500;
+      cursor: pointer;
+    }
+    .status-right { display: flex; gap: 6px; align-items: center; }
+    .battery-icon {
+      width: 18px;
+      height: 9px;
+      border: 1px solid #fff;
+      border-radius: 2px;
+      padding: 1px;
+    }
+    .battery-level { height: 100%; background-color: #4cd964; }
+
+    /* Lock Screen */
+    .lock-screen {
+      position: absolute;
+      inset: 0;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      z-index: 400;
+      background: rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .lock-time { font-size: 64px; font-weight: 200; }
+    .lock-date { font-size: 14px; opacity: 0.8; }
+    .lock-hint { font-size: 12px; opacity: 0.7; margin-bottom: 20px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    .lock-bottom-actions {
+      width: 100%;
+      padding: 0 30px 40px 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .lock-icon-btn {
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Home Screen */
+    .home-screen {
+      flex: 1;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hyper-widget {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 16px;
+      border-radius: 20px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .hw-date { font-weight: bold; font-size: 16px; }
+    .hw-temp { font-size: 13px; margin-top: 4px; opacity: 0.9; }
+
+    /* Apps Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+    .app-item:active { transform: scale(0.92); }
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .app-name {
+      color: #fff;
+      font-size: 11px;
+      margin-top: 6px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    .icon-camera { background: linear-gradient(135deg, #434343, #000000); }
+    .icon-gallery { background: linear-gradient(135deg, #FF8008, #FFC837); }
+    .icon-calculator { background: linear-gradient(135deg, #FF512F, #DD2476); }
+    .icon-notes { background: linear-gradient(135deg, #11998e, #38ef7d); }
+    .icon-game { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+    .icon-settings { background: linear-gradient(135deg, #606c88, #3f4c6b); }
+
+    /* Bottom Dock */
+    .dock {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(20px);
+      padding: 10px 14px;
+      border-radius: 24px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    /* Control Center */
+    .control-center {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 20, 0.9);
+      backdrop-filter: blur(25px);
+      padding: 40px 16px 20px 16px;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      z-index: 600;
+      color: #fff;
+    }
+    .cc-header { display: flex; justify-content: space-between; margin-bottom: 16px; font-weight: bold; }
+    .cc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+    .cc-tile {
+      background: rgba(255,255,255,0.1);
+      padding: 12px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .cc-tile.active { background: #ff6900; }
+    .cc-slider-box { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); padding: 10px 14px; border-radius: 16px; }
+    .cc-slider-box input { flex: 1; }
+
+    /* App Viewport */
+    .app-viewport {
+      position: absolute;
+      inset: 32px 0 20px 0;
+      background: #fff;
+      z-index: 300;
+    }
+    .app-window { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f5f5f7; }
+    .app-header { height: 44px; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-bottom: 1px solid #e5e5e5; }
+    .header-btn { border: none; background: #ff6900; color: #fff; padding: 6px 12px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+    /* Camera */
+    #app-camera { background: #000; position: relative; }
+    #webcam-feed { width: 100%; height: 80%; object-fit: cover; }
+    .camera-controls { height: 20%; display: flex; justify-content: center; align-items: center; background: #000; }
+    .shutter-btn { width: 60px; height: 60px; border-radius: 50%; border: 4px solid #fff; background: transparent; cursor: pointer; }
+
+    /* Gallery */
+    .gallery-grid { padding: 10px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; overflow-y: auto; }
+    .gallery-grid img { width: 100%; height: 90px; object-fit: cover; border-radius: 8px; }
+    .empty-msg { grid-column: span 3; text-align: center; color: #888; margin-top: 40px; }
+
+    /* Calculator */
+    #app-calculator { background: #000; color: #fff; }
+    .calc-display { height: 35%; display: flex; align-items: flex-end; justify-content: flex-end; padding: 20px; font-size: 42px; word-break: break-all; }
+    .calc-keypad { height: 65%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px; }
+    .calc-btn { border: none; border-radius: 50%; font-size: 20px; background: #333; color: #fff; cursor: pointer; }
+    .calc-btn.op { background: #a5a5a5; color: #000; }
+    .calc-btn.op-main { background: #ff6900; }
+
+    /* Notes */
+    .notes-body { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    #note-title { border: none; font-size: 18px; font-weight: bold; outline: none; background: transparent; }
+    #note-content { border: none; font-size: 14px; outline: none; resize: none; flex: 1; background: transparent; }
+
+    /* Game Turbo */
+    .game-container { display: flex; flex-direction: column; align-items: center; padding: 10px; }
+    #snake-canvas { background: #1c1c1e; border-radius: 12px; }
+    .d-pad { margin-top: 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .d-pad-row { display: flex; gap: 20px; }
+    .d-pad button { width: 40px; height: 40px; border-radius: 50%; border: none; background: #3a3a3c; color: #fff; font-size: 16px; cursor: pointer; }
+
+    /* Settings */
+    .settings-list { padding: 16px; }
+    .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+
+    /* Nav Bar */
+    .nav-bar { height: 20px; display: flex; justify-content: center; align-items: center; z-index: 700; }
+    .nav-indicator { width: 120px; height: 4px; background: rgba(255, 255, 255, 0.7); border-radius: 2px; cursor: pointer; }
+
+    /* Utility Classes */
+    .hidden { display: none !important; }
+  </style>
 </head>
 <body>
 
-  <!-- Physical Phone Case -->
-  <div class="phone-case">
-    <!-- Physical Side Buttons -->
-    <div class="volume-btn vol-up"></div>
-    <div class="volume-btn vol-down"></div>
-    <div class="power-btn" id="hw-power-btn" title="Power / Lock Button"></div>
+  <div class="phone-wrapper">
+    <div class="phone-case">
+      <!-- Physical Side Buttons -->
+      <div class="volume-btn vol-up"></div>
+      <div class="volume-btn vol-down"></div>
+      <div class="power-btn" id="hw-power-btn" title="Click to Power On/Off"></div>
 
-    <!-- Screen Bezel -->
-    <div class="phone-screen" id="phone-screen">
-      
-      <!-- Top Punch-Hole Camera -->
-      <div class="punch-hole" id="punch-hole"></div>
-
-      <!-- Power Off Overlay -->
-      <div class="off-screen" id="off-screen"></div>
-
-      <!-- HyperOS Boot Screen -->
-      <div class="boot-screen hidden" id="boot-screen">
-        <div class="boot-content">
-          <div class="mi-logo">mi</div>
-          <div class="powered-by">Powered by <span>HyperOS</span></div>
-        </div>
-      </div>
-
-      <!-- Status Bar -->
-      <div class="status-bar" id="status-bar">
-        <div class="status-left">
-          <span id="status-time">12:00</span>
-        </div>
-        <div class="status-right">
-          <i class="fa-solid fa-signal"></i>
-          <i class="fa-solid fa-wifi"></i>
-          <div class="battery-icon">
-            <div class="battery-level" id="battery-level" style="width: 85%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HyperOS Control Center (Swipeable / Clickable Pull Down) -->
-      <div class="control-center hidden" id="control-center">
-        <div class="cc-header">
-          <span>Control Center</span>
-          <i class="fa-solid fa-chevron-up" id="close-cc-btn"></i>
-        </div>
-        <div class="cc-grid">
-          <div class="cc-tile active" id="toggle-wifi">
-            <i class="fa-solid fa-wifi"></i>
-            <span>Wi-Fi</span>
-          </div>
-          <div class="cc-tile active" id="toggle-bt">
-            <i class="fa-solid fa-bluetooth-b"></i>
-            <span>Bluetooth</span>
-          </div>
-          <div class="cc-tile" id="toggle-flashlight">
-            <i class="fa-solid fa-lightbulb"></i>
-            <span>Torch</span>
-          </div>
-          <div class="cc-tile active" id="toggle-mute">
-            <i class="fa-solid fa-bell"></i>
-            <span>Sound</span>
-          </div>
-        </div>
-        <div class="cc-slider-box">
-          <i class="fa-solid fa-sun"></i>
-          <input type="range" id="brightness-slider" min="30" max="100" value="100" />
-        </div>
-      </div>
-
-      <!-- Lock Screen -->
-      <div class="lock-screen hidden" id="lock-screen">
-        <div class="lock-clock-container">
-          <div class="lock-time" id="lock-time">12:00</div>
-          <div class="lock-date" id="lock-date">Wednesday, October 18</div>
-        </div>
-        <div class="lock-hint">Swipe up or click to unlock</div>
-        <div class="lock-bottom-actions">
-          <div class="lock-icon-btn" id="lock-torch-btn"><i class="fa-solid fa-flashlight"></i></div>
-          <div class="lock-icon-btn" id="lock-cam-btn"><i class="fa-solid fa-camera"></i></div>
-        </div>
-      </div>
-
-      <!-- Home Screen -->
-      <div class="home-screen hidden" id="home-screen">
-        <!-- HyperOS Widgets Bar -->
-        <div class="hyper-widget">
-          <div class="hw-date" id="hw-date">Oct 18 | Sun</div>
-          <div class="hw-temp"><i class="fa-solid fa-sun"></i> 24°C Sunny</div>
-        </div>
-
-        <!-- App Icons Grid -->
-        <div class="apps-grid">
-          <div class="app-item" data-app="camera">
-            <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
-            <span class="app-name">Camera</span>
-          </div>
-          <div class="app-item" data-app="gallery">
-            <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
-            <span class="app-name">Gallery</span>
-          </div>
-          <div class="app-item" data-app="calculator">
-            <div class="app-icon icon-calculator"><i class="fa-solid fa-calculator"></i></div>
-            <span class="app-name">Calculator</span>
-          </div>
-          <div class="app-item" data-app="notes">
-            <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
-            <span class="app-name">Notes</span>
-          </div>
-          <div class="app-item" data-app="game">
-            <div class="app-icon icon-game"><i class="fa-solid fa-gamepad"></i></div>
-            <span class="app-name">Game Turbo</span>
-          </div>
-          <div class="app-item" data-app="settings">
-            <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
-            <span class="app-name">Settings</span>
-          </div>
-        </div>
-
-        <!-- Bottom HyperOS Dock -->
-        <div class="dock">
-          <div class="app-item" data-app="camera">
-            <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
-          </div>
-          <div class="app-item" data-app="gallery">
-            <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
-          </div>
-          <div class="app-item" data-app="notes">
-            <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
-          </div>
-          <div class="app-item" data-app="settings">
-            <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- APP CONTAINERS -->
-      <div class="app-viewport hidden" id="app-viewport">
+      <!-- Screen Bezel -->
+      <div class="phone-screen" id="phone-screen">
         
-        <!-- Camera App -->
-        <div class="app-window hidden" id="app-camera">
-          <video id="webcam-feed" autoplay playsinline></video>
-          <div class="camera-controls">
-            <button class="shutter-btn" id="shutter-btn"></button>
+        <!-- Top Camera -->
+        <div class="punch-hole"></div>
+
+        <!-- Power Off Screen -->
+        <div class="off-screen hidden" id="off-screen" title="Click to turn on"></div>
+
+        <!-- Status Bar -->
+        <div class="status-bar" id="status-bar" title="Click for Control Center">
+          <div class="status-left">
+            <span id="status-time">12:00</span>
+          </div>
+          <div class="status-right">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <div class="battery-icon">
+              <div class="battery-level" style="width: 85%;"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Gallery App -->
-        <div class="app-window hidden" id="app-gallery">
-          <div class="app-header">
-            <h3>Gallery</h3>
+        <!-- Control Center Dropdown -->
+        <div class="control-center hidden" id="control-center">
+          <div class="cc-header">
+            <span>HyperOS Control Center</span>
+            <i class="fa-solid fa-chevron-up" id="close-cc-btn" style="cursor:pointer;"></i>
           </div>
-          <div class="gallery-grid" id="gallery-grid">
-            <p class="empty-msg">No photos captured yet.</p>
+          <div class="cc-grid">
+            <div class="cc-tile active" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-wifi"></i>
+              <span>Wi-Fi</span>
+            </div>
+            <div class="cc-tile active" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-bluetooth-b"></i>
+              <span>Bluetooth</span>
+            </div>
+            <div class="cc-tile" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-lightbulb"></i>
+              <span>Flashlight</span>
+            </div>
+            <div class="cc-tile active" onclick="this.classList.toggle('active')">
+              <i class="fa-solid fa-bell"></i>
+              <span>Sound</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Calculator App -->
-        <div class="app-window hidden" id="app-calculator">
-          <div class="calc-display" id="calc-display">0</div>
-          <div class="calc-keypad">
-            <button class="calc-btn op" onclick="calcInput('C')">C</button>
-            <button class="calc-btn op" onclick="calcInput('()')">( )</button>
-            <button class="calc-btn op" onclick="calcInput('%')">%</button>
-            <button class="calc-btn op-main" onclick="calcInput('/')">÷</button>
-
-            <button class="calc-btn" onclick="calcInput('7')">7</button>
-            <button class="calc-btn" onclick="calcInput('8')">8</button>
-            <button class="calc-btn" onclick="calcInput('9')">9</button>
-            <button class="calc-btn op-main" onclick="calcInput('*')">×</button>
-
-            <button class="calc-btn" onclick="calcInput('4')">4</button>
-            <button class="calc-btn" onclick="calcInput('5')">5</button>
-            <button class="calc-btn" onclick="calcInput('6')">6</button>
-            <button class="calc-btn op-main" onclick="calcInput('-')">-</button>
-
-            <button class="calc-btn" onclick="calcInput('1')">1</button>
-            <button class="calc-btn" onclick="calcInput('2')">2</button>
-            <button class="calc-btn" onclick="calcInput('3')">3</button>
-            <button class="calc-btn op-main" onclick="calcInput('+')">+</button>
-
-            <button class="calc-btn" onclick="calcInput('0')">0</button>
-            <button class="calc-btn" onclick="calcInput('.')">.</button>
-            <button class="calc-btn op-main double" onclick="calcInput('=')">=</button>
+          <div class="cc-slider-box">
+            <i class="fa-solid fa-sun"></i>
+            <input type="range" id="brightness-slider" min="30" max="100" value="100" />
           </div>
         </div>
 
-        <!-- Notes App -->
-        <div class="app-window hidden" id="app-notes">
-          <div class="app-header">
-            <h3>HyperOS Notes</h3>
-            <button class="header-btn" id="save-note-btn">Save</button>
+        <!-- Lock Screen -->
+        <div class="lock-screen" id="lock-screen">
+          <div class="lock-clock-container" style="text-align: center;">
+            <div class="lock-time" id="lock-time">12:00</div>
+            <div class="lock-date" id="lock-date">HyperOS System</div>
           </div>
-          <div class="notes-body">
-            <input type="text" id="note-title" placeholder="Title..." />
-            <textarea id="note-content" placeholder="Write your thoughts here..."></textarea>
+          <div class="lock-hint">Tap screen to unlock</div>
+          <div class="lock-bottom-actions">
+            <div class="lock-icon-btn"><i class="fa-solid fa-flashlight"></i></div>
+            <div class="lock-icon-btn"><i class="fa-solid fa-camera"></i></div>
           </div>
         </div>
 
-        <!-- Game Turbo App (Snake) -->
-        <div class="app-window hidden" id="app-game">
-          <div class="app-header">
-            <h3>Snake Arcade</h3>
-            <span id="snake-score">Score: 0</span>
+        <!-- Home Screen -->
+        <div class="home-screen hidden" id="home-screen">
+          <div class="hyper-widget">
+            <div class="hw-date" id="hw-date">HyperOS Widget</div>
+            <div class="hw-temp"><i class="fa-solid fa-sun"></i> 24°C Sunny</div>
           </div>
-          <div class="game-container">
-            <canvas id="snake-canvas" width="280" height="280"></canvas>
-            <div class="d-pad">
-              <button onclick="changeSnakeDir('UP')"><i class="fa-solid fa-arrow-up"></i></button>
-              <div class="d-pad-row">
-                <button onclick="changeSnakeDir('LEFT')"><i class="fa-solid fa-arrow-left"></i></button>
-                <button onclick="changeSnakeDir('RIGHT')"><i class="fa-solid fa-arrow-right"></i></button>
+
+          <!-- Apps Grid -->
+          <div class="apps-grid">
+            <div class="app-item" data-app="camera">
+              <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
+              <span class="app-name">Camera</span>
+            </div>
+            <div class="app-item" data-app="gallery">
+              <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
+              <span class="app-name">Gallery</span>
+            </div>
+            <div class="app-item" data-app="calculator">
+              <div class="app-icon icon-calculator"><i class="fa-solid fa-calculator"></i></div>
+              <span class="app-name">Calculator</span>
+            </div>
+            <div class="app-item" data-app="notes">
+              <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
+              <span class="app-name">Notes</span>
+            </div>
+            <div class="app-item" data-app="game">
+              <div class="app-icon icon-game"><i class="fa-solid fa-gamepad"></i></div>
+              <span class="app-name">Snake</span>
+            </div>
+            <div class="app-item" data-app="settings">
+              <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
+              <span class="app-name">Settings</span>
+            </div>
+          </div>
+
+          <!-- Bottom Dock -->
+          <div class="dock">
+            <div class="app-item" data-app="camera">
+              <div class="app-icon icon-camera"><i class="fa-solid fa-camera"></i></div>
+            </div>
+            <div class="app-item" data-app="gallery">
+              <div class="app-icon icon-gallery"><i class="fa-solid fa-images"></i></div>
+            </div>
+            <div class="app-item" data-app="notes">
+              <div class="app-icon icon-notes"><i class="fa-solid fa-note-sticky"></i></div>
+            </div>
+            <div class="app-item" data-app="settings">
+              <div class="app-icon icon-settings"><i class="fa-solid fa-gear"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- APP VIEWPORT -->
+        <div class="app-viewport hidden" id="app-viewport">
+          
+          <!-- Camera -->
+          <div class="app-window hidden" id="app-camera">
+            <video id="webcam-feed" autoplay playsinline></video>
+            <div class="camera-controls">
+              <button class="shutter-btn" id="shutter-btn"></button>
+            </div>
+          </div>
+
+          <!-- Gallery -->
+          <div class="app-window hidden" id="app-gallery">
+            <div class="app-header">
+              <h3>Gallery</h3>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+              <p class="empty-msg">No photos captured yet.</p>
+            </div>
+          </div>
+
+          <!-- Calculator -->
+          <div class="app-window hidden" id="app-calculator">
+            <div class="calc-display" id="calc-display">0</div>
+            <div class="calc-keypad">
+              <button class="calc-btn op" onclick="calcInput('C')">C</button>
+              <button class="calc-btn op" onclick="calcInput('(')">(</button>
+              <button class="calc-btn op" onclick="calcInput(')')">)</button>
+              <button class="calc-btn op-main" onclick="calcInput('/')">÷</button>
+
+              <button class="calc-btn" onclick="calcInput('7')">7</button>
+              <button class="calc-btn" onclick="calcInput('8')">8</button>
+              <button class="calc-btn" onclick="calcInput('9')">9</button>
+              <button class="calc-btn op-main" onclick="calcInput('*')">×</button>
+
+              <button class="calc-btn" onclick="calcInput('4')">4</button>
+              <button class="calc-btn" onclick="calcInput('5')">5</button>
+              <button class="calc-btn" onclick="calcInput('6')">6</button>
+              <button class="calc-btn op-main" onclick="calcInput('-')">-</button>
+
+              <button class="calc-btn" onclick="calcInput('1')">1</button>
+              <button class="calc-btn" onclick="calcInput('2')">2</button>
+              <button class="calc-btn" onclick="calcInput('3')">3</button>
+              <button class="calc-btn op-main" onclick="calcInput('+')">+</button>
+
+              <button class="calc-btn" onclick="calcInput('0')">0</button>
+              <button class="calc-btn" onclick="calcInput('.')">.</button>
+              <button class="calc-btn op-main" style="grid-column: span 2; border-radius: 30px;" onclick="calcInput('=')">=</button>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="app-window hidden" id="app-notes">
+            <div class="app-header">
+              <h3>Notes</h3>
+              <button class="header-btn" id="save-note-btn">Save</button>
+            </div>
+            <div class="notes-body">
+              <input type="text" id="note-title" placeholder="Note Title..." />
+              <textarea id="note-content" placeholder="Type here..."></textarea>
+            </div>
+          </div>
+
+          <!-- Snake Game -->
+          <div class="app-window hidden" id="app-game">
+            <div class="app-header">
+              <h3>Snake Turbo</h3>
+              <span id="snake-score" style="font-weight:bold;">Score: 0</span>
+            </div>
+            <div class="game-container">
+              <canvas id="snake-canvas" width="280" height="280"></canvas>
+              <div class="d-pad">
+                <button onclick="changeSnakeDir('UP')"><i class="fa-solid fa-arrow-up"></i></button>
+                <div class="d-pad-row">
+                  <button onclick="changeSnakeDir('LEFT')"><i class="fa-solid fa-arrow-left"></i></button>
+                  <button onclick="changeSnakeDir('RIGHT')"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <button onclick="changeSnakeDir('DOWN')"><i class="fa-solid fa-arrow-down"></i></button>
               </div>
-              <button onclick="changeSnakeDir('DOWN')"><i class="fa-solid fa-arrow-down"></i></button>
             </div>
           </div>
+
+          <!-- Settings -->
+          <div class="app-window hidden" id="app-settings">
+            <div class="app-header">
+              <h3>Settings</h3>
+            </div>
+            <div class="settings-list">
+              <div class="setting-item">
+                <span>Device</span>
+                <small style="color:#666;">Xiaomi HyperOS</small>
+              </div>
+              <div class="setting-item">
+                <span>Wallpaper</span>
+                <select id="wallpaper-select">
+                  <option value="linear-gradient(135deg, #0f2027, #203a43, #2c5364)">Hyper Blue</option>
+                  <option value="linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)">Sunset Flame</option>
+                  <option value="linear-gradient(135deg, #11998e, #38ef7d)">Emerald</option>
+                  <option value="#000000">Dark</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Settings App -->
-        <div class="app-window hidden" id="app-settings">
-          <div class="app-header">
-            <h3>Settings</h3>
-          </div>
-          <div class="settings-list">
-            <div class="setting-item">
-              <span>Device Info</span>
-              <small>Xiaomi 14 Pro (HyperOS 1.0)</small>
-            </div>
-            <div class="setting-item">
-              <span>Wallpaper Style</span>
-              <select id="wallpaper-select">
-                <option value="linear-gradient(135deg, #0f2027, #203a43, #2c5364)">HyperOS Gradient</option>
-                <option value="linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)">Sunset Flame</option>
-                <option value="linear-gradient(135deg, #11998e, #38ef7d)">Emerald City</option>
-                <option value="#000000">Minimal Dark</option>
-              </select>
-            </div>
-            <div class="setting-item">
-              <span>Sound Effects</span>
-              <input type="checkbox" id="sound-toggle" checked />
-            </div>
-          </div>
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+          <div class="nav-indicator" id="nav-home-btn" title="Home"></div>
         </div>
 
       </div>
-
-      <!-- Navigation Gestures Bar (Home / Back) -->
-      <div class="nav-bar" id="nav-bar">
-        <div class="nav-indicator" id="nav-home-btn"></div>
-      </div>
-
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script>
+    let isPowerOn = true;
+    let isLocked = true;
+    let activeApp = null;
+
+    const offScreen = document.getElementById('off-screen');
+    const lockScreen = document.getElementById('lock-screen');
+    const homeScreen = document.getElementById('home-screen');
+    const controlCenter = document.getElementById('control-center');
+    const appViewport = document.getElementById('app-viewport');
+    const phoneScreen = document.getElementById('phone-screen');
+    const statusTime = document.getElementById('status-time');
+    const lockTime = document.getElementById('lock-time');
+
+    // Update Clock
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+      statusTime.textContent = timeStr;
+      lockTime.textContent = timeStr;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Power Button Toggle
+    document.getElementById('hw-power-btn').addEventListener('click', () => {
+      isPowerOn = !isPowerOn;
+      if (isPowerOn) {
+        offScreen.classList.add('hidden');
+      } else {
+        offScreen.classList.remove('hidden');
+      }
+    });
+
+    offScreen.addEventListener('click', () => {
+      isPowerOn = true;
+      offScreen.classList.add('hidden');
+    });
+
+    // Unlock Screen
+    lockScreen.addEventListener('click', () => {
+      if (!isPowerOn) return;
+      lockScreen.classList.add('hidden');
+      homeScreen.classList.remove('hidden');
+      isLocked = false;
+    });
+
+    // Navigation Home Button
+    document.getElementById('nav-home-btn').addEventListener('click', () => {
+      if (activeApp) {
+        closeApp();
+      } else if (!controlCenter.classList.contains('hidden')) {
+        controlCenter.classList.add('hidden');
+      }
+    });
+
+    // Control Center Dropdown
+    document.getElementById('status-bar').addEventListener('click', () => {
+      if (!isPowerOn || isLocked) return;
+      controlCenter.classList.toggle('hidden');
+    });
+    document.getElementById('close-cc-btn').addEventListener('click', () => {
+      controlCenter.classList.add('hidden');
+    });
+
+    // Open Apps
+    document.querySelectorAll('.app-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (!isPowerOn || isLocked) return;
+        const appName = item.getAttribute('data-app');
+        openApp(appName);
+      });
+    });
+
+    function openApp(appName) {
+      activeApp = appName;
+      appViewport.classList.remove('hidden');
+      
+      document.querySelectorAll('.app-window').forEach(win => win.classList.add('hidden'));
+      const targetApp = document.getElementById(`app-${appName}`);
+      if (targetApp) targetApp.classList.remove('hidden');
+
+      if (appName === 'camera') startWebcam();
+      if (appName === 'game') startSnakeGame();
+    }
+
+    function closeApp() {
+      appViewport.classList.add('hidden');
+      activeApp = null;
+      stopWebcam();
+    }
+
+    // Camera
+    let webcamStream = null;
+    async function startWebcam() {
+      try {
+        webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        document.getElementById('webcam-feed').srcObject = webcamStream;
+      } catch (err) {
+        console.warn("Webcam unavailable.");
+      }
+    }
+
+    function stopWebcam() {
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+      }
+    }
+
+    document.getElementById('shutter-btn').addEventListener('click', () => {
+      const video = document.getElementById('webcam-feed');
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 300;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, 300, 300);
+      
+      const imgUrl = canvas.toDataURL('image/png');
+      const gallery = document.getElementById('gallery-grid');
+      
+      const emptyMsg = gallery.querySelector('.empty-msg');
+      if (emptyMsg) emptyMsg.remove();
+
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      gallery.prepend(img);
+    });
+
+    // Calculator
+    let calcVal = '0';
+    function calcInput(val) {
+      const display = document.getElementById('calc-display');
+      if (val === 'C') {
+        calcVal = '0';
+      } else if (val === '=') {
+        try {
+          calcVal = String(eval(calcVal));
+        } catch {
+          calcVal = 'Error';
+        }
+      } else {
+        calcVal = calcVal === '0' ? val : calcVal + val;
+      }
+      display.textContent = calcVal;
+    }
+
+    // Notes
+    document.getElementById('save-note-btn').addEventListener('click', () => {
+      const title = document.getElementById('note-title').value;
+      const content = document.getElementById('note-content').value;
+      if (title) {
+        localStorage.setItem(`hyper_note_${title}`, content);
+        alert('Note Saved!');
+      }
+    });
+
+    // Snake Game
+    let snakeDir = 'RIGHT';
+    function changeSnakeDir(dir) {
+      snakeDir = dir;
+    }
+
+    function startSnakeGame() {
+      const canvas = document.getElementById('snake-canvas');
+      const ctx = canvas.getContext('2d');
+      let snake = [{x: 5, y: 5}];
+      let food = {x: 10, y: 10};
+      let score = 0;
+
+      function gameLoop() {
+        if (activeApp !== 'game') return;
+
+        let head = {...snake[0]};
+        if (snakeDir === 'UP') head.y--;
+        if (snakeDir === 'DOWN') head.y++;
+        if (snakeDir === 'LEFT') head.x--;
+        if (snakeDir === 'RIGHT') head.x++;
+
+        if (head.x < 0 || head.x >= 14 || head.y < 0 || head.y >= 14) {
+          alert('Game Over! Final Score: ' + score);
+          return;
+        }
+
+        snake.unshift(head);
+        if (head.x === food.x && head.y === food.y) {
+          score += 10;
+          document.getElementById('snake-score').textContent = `Score: ${score}`;
+          food = {
+            x: Math.floor(Math.random() * 14),
+            y: Math.floor(Math.random() * 14)
+          };
+        } else {
+          snake.pop();
+        }
+
+        ctx.fillStyle = '#1c1c1e';
+        ctx.fillRect(0, 0, 280, 280);
+
+        ctx.fillStyle = '#ff6900';
+        ctx.fillRect(food.x * 20, food.y * 20, 18, 18);
+
+        ctx.fillStyle = '#38ef7d';
+        snake.forEach(part => ctx.fillRect(part.x * 20, part.y * 20, 18, 18));
+
+        setTimeout(gameLoop, 200);
+      }
+      gameLoop();
+    }
+
+    // Wallpaper Setting
+    document.getElementById('wallpaper-select').addEventListener('change', (e) => {
+      phoneScreen.style.background = e.target.value;
+    });
+
+    // Brightness Setting
+    document.getElementById('brightness-slider').addEventListener('input', (e) => {
+      phoneScreen.style.filter = `brightness(${e.target.value}%)`;
+    });
+  </script>
 </body>
 </html>
