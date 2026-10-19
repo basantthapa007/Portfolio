@@ -54,6 +54,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+     /* Hidden class for search filtering */
+    .card.hidden {
+        display: none !important;
+    }
         * {
             margin: 0;
             padding: 0;
@@ -651,15 +655,36 @@
     </footer>
 
     <!-- Search Script Logic -->
+    <!-- Search Script Logic -->
     <script>
         function performSearch() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            if(query) {
-                alert("Searching notes and tools for: " + query);
-            } else {
-                alert("Please enter a search term.");
+            const cards = document.querySelectorAll('.card');
+            let matchCount = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+
+                // Check if the card title or description contains the search query
+                if (title.includes(query) || description.includes(query) || query === "") {
+                    card.classList.remove('hidden');
+                    matchCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Optional: Scroll down to the notes section if a search is performed
+            if (query !== "" && matchCount > 0) {
+                document.getElementById('notes').scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        // Live search as the user types
+        document.getElementById('searchInput').addEventListener('input', function () {
+            performSearch();
+        });
 
         // Allow pressing Enter in the search input
         document.getElementById('searchInput').addEventListener('keypress', function (e) {
