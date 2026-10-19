@@ -3,7 +3,6 @@
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- ...other tags... -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2195037554780501"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
@@ -54,10 +53,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-     /* Hidden class for search filtering */
-    .card.hidden {
-        display: none !important;
-    }
         * {
             margin: 0;
             padding: 0;
@@ -117,6 +112,7 @@
 
         /* Navbar Search Bar Container */
         .nav-search-container {
+            position: relative;
             display: flex;
             align-items: center;
             background: #ffffff;
@@ -143,6 +139,54 @@
             color: #2563eb;
             cursor: pointer;
             font-size: 1rem;
+        }
+
+        /* Search Results Dropdown Styling */
+        .search-results-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            color: #333;
+            width: 280px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin-top: 8px;
+            display: none;
+            z-index: 1000;
+            list-style: none;
+            padding: 0;
+        }
+
+        .search-results-dropdown li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-results-dropdown li:last-child {
+            border-bottom: none;
+        }
+
+        .search-results-dropdown a {
+            display: block;
+            padding: 10px 12px;
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .search-results-dropdown a:hover {
+            background: #f3f4f6;
+            color: #2563eb;
+        }
+
+        .search-results-dropdown .no-results {
+            padding: 10px 12px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            text-align: center;
         }
 
         /* Hero Section */
@@ -307,7 +351,6 @@
             padding-right: 15px;
         }
 
-        /* Footer Headings */
         .footer-col h3.footer-heading {
             color: #b30000;
             font-size: 16px;
@@ -316,7 +359,6 @@
             text-transform: capitalize;
         }
 
-        /* Contact & Link Lists */
         .contact-list, .links-list {
             list-style: none;
             padding: 0;
@@ -362,7 +404,6 @@
             color: #b30000;
         }
 
-        /* Social Icons */
         .social-icons {
             display: flex;
             gap: 8px;
@@ -384,20 +425,10 @@
         .social-icon.twitter { background-color: #1da1f2; }
         .social-icon.youtube { background-color: #ff0000; }
 
-        /* Brand Column */
         .brand-logo {
             display: flex;
             align-items: baseline;
             margin-bottom: 10px;
-        }
-
-        .logo-yb {
-            font-family: 'Brush Script MT', cursive, sans-serif;
-            font-size: 32px;
-            color: #d81b60;
-            font-weight: bold;
-            font-style: italic;
-            margin-right: 4px;
         }
 
         .logo-text {
@@ -416,7 +447,6 @@
             max-width: 260px;
         }
 
-        /* Footer Bottom Bar */
         .footer-bottom {
             background-color: #7b7373;
             text-align: center;
@@ -430,7 +460,6 @@
             margin: 0;
         }
 
-        /* Back to Top Button */
         .back-to-top {
             position: absolute;
             right: 20px;
@@ -451,7 +480,6 @@
             background-color: #000066;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -470,10 +498,10 @@
 </head>
 <body>
 
-    <!-- Header / Navbar (Text only, natural scrolling) -->
+    <!-- Header / Navbar -->
     <header>
         <a href="#" class="logo" aria-label="Basant Thapa Home">
-              <!-- Header logo-->
+            Basant Thapa
         </a>
         <nav aria-label="Main Navigation">
             <ul>
@@ -485,8 +513,10 @@
                 <li><a href="#contact-details">Contact</a></li>
                 <li>
                     <div class="nav-search-container">
-                        <input type="text" id="searchInput" class="nav-search-input" placeholder="Search....." aria-label="Search study notes">
+                        <input type="text" id="searchInput" class="nav-search-input" placeholder="Search site..." autocomplete="off" aria-label="Search site">
                         <button onclick="performSearch()" class="nav-search-btn" aria-label="Submit search"><i class="fas fa-search"></i></button>
+                        <!-- Results Dropdown Box -->
+                        <ul id="searchResults" class="search-results-dropdown"></ul>
                     </div>
                 </li>
             </ul>
@@ -635,7 +665,6 @@
             <!-- Column 4: Brand & Bio -->
             <div class="footer-col brand-col">
                 <div class="brand-logo">
-                    <span class="logo-yb"></span>
                     <span class="logo-text">Basant Thapa</span>
                 </div>
                 <p class="brand-desc">
@@ -654,42 +683,59 @@
         <a href="#" class="back-to-top" aria-label="Scroll back to top"><i class="fas fa-angle-up"></i></a>
     </footer>
 
-    <!-- Search Script Logic -->
-    <!-- Search Script Logic -->
+    <!-- Site-Wide Search Script Logic -->
     <script>
+        // Define all pages, tools, notes, and subfolders on your domain here
+        const sitePages = [
+            { title: "Home Page", url: "https://basanthapa.com.np/", category: "General" },
+            { title: "Class Nine Study Notes", url: "https://basanthapa.com.np/#notes", category: "Notes" },
+            { title: "Class Ten Study Notes", url: "https://basanthapa.com.np/#notes", category: "Notes" },
+            { title: "Class Eleven Study Notes", url: "https://basanthapa.com.np/#notes", category: "Notes" },
+            { title: "GPA & Percentage Calculator", url: "https://basanthapa.com.np/tools/neb_gpa_calculator/", category: "Tools" },
+            { title: "EG Folder Content / Page", url: "https://basanthapa.com.np/eg/", category: "EG Hub" },
+            { title: "Latest Curriculum Guidelines", url: "https://basanthapa.com.np/#news", category: "News" },
+            { title: "About Us", url: "https://basanthapa.com.np/#about", category: "General" },
+            { title: "Contact Details", url: "https://basanthapa.com.np/#contact-details", category: "General" }
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
         function performSearch() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            let matchCount = 0;
+            const query = searchInput.value.trim().toLowerCase();
+            searchResults.innerHTML = "";
 
-            cards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
+            if (query === "") {
+                searchResults.style.display = "none";
+                return;
+            }
 
-                // Check if the card title or description contains the search query
-                if (title.includes(query) || description.includes(query) || query === "") {
-                    card.classList.remove('hidden');
-                    matchCount++;
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
+            // Filter pages that match the search query
+            const matches = sitePages.filter(page => 
+                page.title.toLowerCase().includes(query) || 
+                page.category.toLowerCase().includes(query)
+            );
 
-            // Optional: Scroll down to the notes section if a search is performed
-            if (query !== "" && matchCount > 0) {
-                document.getElementById('notes').scrollIntoView({ behavior: 'smooth' });
+            if (matches.length > 0) {
+                matches.forEach(page => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${page.url}"><strong>${page.title}</strong> <span style="font-size:0.75rem; color:#2563eb; display:block;">[${page.category}]</span></a>`;
+                    searchResults.appendChild(li);
+                });
+                searchResults.style.display = "block";
+            } else {
+                searchResults.innerHTML = `<li class="no-results">No results found for "${query}"</li>`;
+                searchResults.style.display = "block";
             }
         }
 
-        // Live search as the user types
-        document.getElementById('searchInput').addEventListener('input', function () {
-            performSearch();
-        });
+        // Live search as you type
+        searchInput.addEventListener('input', performSearch);
 
-        // Allow pressing Enter in the search input
-        document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                performSearch();
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-search-container')) {
+                searchResults.style.display = "none";
             }
         });
     </script>
